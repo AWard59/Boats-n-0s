@@ -1,1 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
+
+.border {
+  border: 5px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+form {
+  display: grid;
+  margin-left: 20px;
+  margin-right: 20px;
+}
