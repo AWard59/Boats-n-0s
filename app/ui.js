@@ -1,7 +1,10 @@
 'use strict'
 
+const store = require('./store')
+
 const signUpSuccess = function (responseData) {
-  $('#sign-up-success').text('Signed up successfully')
+  $('#sign-up-success').html('<p>Signed up successfully!</p>',
+    '<p>Sign In to continue</p>')
   $('#sign-up-success').removeClass()
   $('#sign-up-success').addClass('text-success')
   $('#sign-up-success').fadeOut(5000)
@@ -21,16 +24,16 @@ const signUpFailure = function (err) {
 }
 
 const signInSuccess = function (responseData) {
-  // store.user = responseData.user
+  store.user = responseData.user
 
-  $('#sign-in-success').text('Successfully signed in!')
+  $('#sign-in-success').text('Signed in successfully!')
   $('#sign-in-success').removeClass()
   $('#sign-in-success').addClass('text-success')
   $('#sign-in-success').fadeOut(5000)
 
   $('form').trigger('reset')
-  // $('#before-sign-in').hide()
-  // $('#after-sign-in').show()
+  $('#sign-in-page').hide()
+  $('.game-page').show()
 
   console.log(responseData)
 }
@@ -44,9 +47,27 @@ const signInFailure = function (err) {
   console.error(err)
 }
 
+const signOutSuccess = function (responseData) {
+  $('.game-page').hide()
+  $('#sign-in-page').show()
+
+  console.log(responseData)
+}
+
+const signOutFailure = function (err) {
+  $('#sign-out-failure').text('Sign out failed')
+  $('#sign-out-failure').removeClass()
+  $('#sign-out-failure').addClass('text-danger')
+  $('#sign-out-failure').fadeOut(5000)
+
+  console.error(err)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
-  signInFailure
+  signInFailure,
+  signOutSuccess,
+  signOutFailure
 }

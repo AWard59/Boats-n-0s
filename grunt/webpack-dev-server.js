@@ -48,7 +48,7 @@ module.exports = {
     inline: true, // reload on change
     webpack: webpackConfig,
     publicPath: '/public/',
-    contentBase: [ path.join(__dirname, '/../') ],
+    contentBase: [path.join(__dirname, '/../')],
     watchContentBase: true
   },
 
