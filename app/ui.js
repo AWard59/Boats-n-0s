@@ -63,11 +63,22 @@ const signOutFailure = function (err) {
   console.error(err)
 }
 
+const newGameStart = function () {
+  $('#new-game-button').hide()
+  $('.box').css('opacity', '1')
+}
+
+const gridSelection = function (playerToken) {
+  console.log(`player is now ${playerToken}`)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
   signInFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  newGameStart,
+  gridSelection
 }
