@@ -15,3 +15,34 @@ form {
 .game-page {
   display: none
 }
+
+.box {
+  align-items: center;
+  background-color: lightgrey;
+  border: 1px solid white;
+  color: white;
+  display: flex;
+  height: 25vh;
+  width: 25vw;
+  justify-content: center;
+  opacity: 0.3;
+}
+
+.container {
+  margin-top: 5vw;
+  margin-right: 5vw;
+  height: 90vw;
+  width: 90vw
+}
+
+#new-game-button {
+  width: 100vw;
+  position: absolute;
+  top: 45vh;
+  left: 50vw
+}
+
+#new-game-button > button {
+  height: 12vh;
+  width: 30vw;
+}
