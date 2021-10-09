@@ -79,6 +79,13 @@ const newGameStart = function () {
 
 const gridSelection = function (playerToken) {
   console.log(`player is now ${playerToken}`)
+  if (playerToken === '0') {
+    $(event.target).addClass('bg-primary')
+    $(event.target).html('<h1 class="display-1">X</h1>')
+  } else {
+    $(event.target).addClass('bg-secondary')
+    $(event.target).html('<h1 class="display-1">0</h1>')
+  }
 }
 
 module.exports = {
