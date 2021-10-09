@@ -1,6 +1,8 @@
 const config = require('./config')
 const store = require('./store')
 
+// using formData from events.js, make POST request to api to create a new user object
+// return result
 const signUp = function (formData) {
   return $.ajax({
     url: `${config.apiUrl}/sign-up`,
@@ -17,6 +19,8 @@ const signIn = function (formData) {
   })
 }
 
+// Token needs to be the same as the token created when logging in
+// delete that token - requiring user to sign in again for access
 const signOut = function () {
   return $.ajax({
     url: `${config.apiUrl}/sign-out`,
@@ -27,6 +31,7 @@ const signOut = function () {
   })
 }
 
+// Again checking token vs created token on login, create an empty game object applied to this user
 const newGame = function () {
   return $.ajax({
     url: `${config.apiUrl}/games`,

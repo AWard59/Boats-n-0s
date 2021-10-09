@@ -12,6 +12,7 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+      <!-- Import Nav Bar from bootstrap -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +25,7 @@
               <a class="nav-link" href="#">Link</a>
             </li>
             <div class="game-page" id="sign-out-failure"></div>
+            <!-- create a 'sign out' button on the nav bar -->
             <button class="game-page btn btn-danger" id="sign-out">Sign Out</button>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +41,7 @@
           </ul>
         </div>
       </nav>
-
+      <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
       <section id="sign-in-page">
         <form id="sign-up" class="border">
           <legend>Sign Up</legend>
@@ -75,6 +77,8 @@
         </form>
       </section>
 
+      <!-- game page sectioned - 3x3 grid created with bootstrap
+      w-100 class in bootstrap guarantees a line break, meaining there will never be more than 3 columns on page -->
       <section class="game-page">
         <div class="container">
           <div class="row">
