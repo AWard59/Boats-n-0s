@@ -24,18 +24,17 @@
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item">Action</a>
+                <a class="dropdown-item">Another action</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item">Something else here</a>
               </div>
             </li>
           </ul>
-          </form>
         </div>
       </nav>
 
@@ -52,6 +51,8 @@
             <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
           </div>
           <button type="submit" class="btn btn-success">Sign Up</button>
+          <div id="sign-up-success"></div>
+          <div id="sign-up-failure"></div>
         </form>
 
         <hr>
@@ -67,6 +68,8 @@
           <div class="mb-3">
           </div>
           <button type="submit" class="btn btn-primary">Sign In</button>
+          <div id="sign-in-success"></div>
+          <div id="sign-in-failure"></div>
         </form>
 
       </section>
