@@ -13,36 +13,48 @@ form {
 }
 
 .game-page {
-  display: none
+  display: none;
+  padding: 0 20 20 20
+}
+
+#currentPlayer {
+  padding: 0;
+  text-align: center;
+}
+
+.container-fluid {
+  height: 90vh;
+  width: 100vw;
+}
+
+.row {
+  margin-left: 20px;
+  margin-right: 20px
 }
 
 .box {
-  align-items: center;
-  background-color: lightgrey;
-  border: 1px solid white;
-  color: white;
   display: flex;
-  height: 25vh;
-  width: 25vw;
+  align-items: center;
   justify-content: center;
+  border: 1px solid white;
+  background-color: lightgrey;
+  color: white;
+  height: 30vh;
+  width: 32vw;
   opacity: 0.3;
 }
 
-.container {
-  margin-top: 5vw;
-  margin-right: 5vw;
-  height: 90vw;
-  width: 90vw
-}
-
 #new-game-button {
-  width: 100vw;
+  width: 60vw;
   position: absolute;
-  top: 45vh;
-  left: 50vw
+  top: 41vh;
+  left: 31vw;
+  margin: 0
 }
 
 #new-game-button > button {
+  float: inherit;
   height: 12vh;
-  width: 30vw;
+  width: 38vw;
+  font-size: 36px;
 }
