@@ -77,6 +77,11 @@ const newGameStart = function () {
   $('.box').css('opacity', '1')
 }
 
+const currentPlayer = function (playerToken) {
+  $('#currentPlayer').text(`Current Player: ${playerToken}`)
+  // console.log(`player is now ${playerToken}`) // testing purposes
+}
+
 // Knowing that playerToken switched at the end of gridSelection function in events.js -
 // if playerToken is now 0, this means that we want to update the grid for X
 // add bootstrap primary/secondary bg color, and X/0 text
@@ -88,11 +93,17 @@ const gridSelection = function (playerToken) {
     $(event.target).addClass('bg-secondary')
     $(event.target).html('<h1 class="display-1">0</h1>')
   }
+  currentPlayer(playerToken)
 }
 
-const currentPlayer = function (playerToken) {
-  $('#currentPlayer').text(`Current Player: ${playerToken}`)
-  console.log(`player is now ${playerToken}`)
+const gameOver = function (playerToken) {
+  console.log(playerToken + ' wins') // testing purposes
+  alert(`${playerToken} wins`)
+}
+
+const gameEndTie = function () {
+  console.log("it's a tie") // testing purposes
+  alert('It\'s a tie!')
 }
 
 module.exports = {
@@ -104,5 +115,7 @@ module.exports = {
   signOutFailure,
   newGameStart,
   gridSelection,
-  currentPlayer
+  currentPlayer,
+  gameOver,
+  gameEndTie
 }
