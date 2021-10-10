@@ -9,7 +9,7 @@ const api = require('./api')
 const ui = require('./ui')
 
 // hard code starting player token as X, as X always starts first
-let playerToken = 'x'
+let playerToken = 'X'
 let gameState = false
 
 // prevent refresh on submit form, retrieve data from form fields, make request to the api with formfield data, then update ui depending on outcome
@@ -45,6 +45,7 @@ const onNewGame = function () {
   api.newGame()
     .then(ui.newGameStart)
     .then(gameState = true)
+    .then(ui.currentPlayer(playerToken))
     .catch(ui.signOutFailure)
 }
 
@@ -52,6 +53,8 @@ const onNewGame = function () {
 // If not occupied, apply the current token, x or 0, to the data to lock it
 // switch the token for the next player, X>0, or 0>X
 const gridSelection = function (event) {
+  // gameState is default false, until we click New Game button for function onNewGame above
+  // until the button is clicked, the grid has no functionality
   if (gameState) {
     const target = event.target
     console.log('clicked ' + target.id)
@@ -59,12 +62,13 @@ const gridSelection = function (event) {
     if (target.dataset.occupied === '') {
       target.dataset.occupied = playerToken
       console.log(target.dataset.occupied)
-      if (playerToken === 'x') {
+      if (playerToken === 'X') {
         playerToken = '0'
       } else {
-        playerToken = 'x'
+        playerToken = 'X'
       }
       ui.gridSelection(playerToken)
+      ui.currentPlayer(playerToken)
     }
   }
 }
