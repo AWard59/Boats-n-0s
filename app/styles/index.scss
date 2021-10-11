@@ -1,8 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  background-color: #CAF0F8;
+}
+
+nav {
+  background-color: #ADE8F4;
+  height: 45px
+}
+
 .title {
 position: fixed;
-left: 20px
+left: 20px;
 }
 
 .border {
@@ -25,10 +34,11 @@ form {
 #sign-out {
   padding: 0;
   width: 10vw;
-  height: 2.5vh
+  height: 2.5vh;
+  margin-right: 10px
 }
 
-#currentPlayer {
+#current-player, #game-messages {
   padding: 0;
   text-align: center;
 }
@@ -48,6 +58,7 @@ form {
   align-items: center;
   justify-content: center;
   border: 1px solid white;
+  margin: 3px;
   background-color: lightgrey;
   color: white;
   height: 30vh;

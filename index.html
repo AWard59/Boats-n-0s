@@ -13,7 +13,7 @@
     </head>
     <body>
       <!-- Import Nav Bar from bootstrap -->
-      <nav class="navbar navbar-light bg-light justify-content-end">
+      <nav class="navbar navbar-light justify-content-end">
         <div class="title nav-item">
           <h3>Tic-Tac-Toe</h3>
         </div>
@@ -72,22 +72,28 @@
 
       <!-- game page sectioned - 3x3 grid created with bootstrap flexbox -->
       <section class="game-page">
-        <div>
-          <h1 id="currentPlayer">Current Player: X</h1>
+        <div class="row">
+          <div class="col col-xs-4"></div>
+          <div class="col col-xs-4">
+          <h1 id="current-player">Current Player: X</h1>
+          </div>
+          <div class="col col-xs-4">
+            <h3 id="game-messages"></h3>
+          </div>
         </div>
         <div class="container-fluid">
           <div class="row">
-              <div class="col col-xs-4 box game-grid" id="0"></div>
-              <div class="col col-xs-4 box game-grid" id="1"></div>
-              <div class="col col-xs-4 box game-grid" id="2"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="0"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="1"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="2"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid" id="3"></div>
-              <div class="col col-xs-4 box game-grid" id="4"></div>
-              <div class="col col-xs-4 box game-grid" id="5"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="3"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="4"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="5"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid" id="6"></div>
-              <div class="col col-xs-4 box game-grid" id="7"></div>
-              <div class="col col-xs-4 box game-grid" id="8"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="6"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="7"></div>
+              <div class="col col-xs-4 box game-grid rounded" id="8"></div>
           </div>
         </div>
         <div id="new-game-button">
