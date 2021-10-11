@@ -82,11 +82,9 @@ const currentPlayer = function (playerToken) {
   // console.log(`player is now ${playerToken}`) // testing purposes
 }
 
-// Knowing that playerToken switched at the end of gridSelection function in events.js -
-// if playerToken is now 0, this means that we want to update the grid for X
 // add bootstrap primary/secondary bg color, and X/0 text
 const gridSelection = function (playerToken) {
-  if (playerToken === '0') {
+  if (playerToken === 'X') {
     $(event.target).addClass('bg-primary')
     $(event.target).html('<h1 class="display-1">X</h1>')
   } else {

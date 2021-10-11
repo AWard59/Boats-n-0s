@@ -73,19 +73,19 @@ const onGridSelection = function (event) {
   if (gameState) {
     const target = event.target
     // console.log('clicked ' + target.id) // testing purposes
-    if (gameCellTracker[event.target.id] === '') {
-      gameCellTracker[event.target.id] = currentToken
+    if (gameCellTracker[target.id] === '') {
+      gameCellTracker[target.id] = currentToken
       // console.log(gameCellTracker) // testing purposes
-    }
-    gameCellTracker[target.id] = currentToken
-    // console.log(gameCellTracker) // testing purposes
-    checkForWinner(currentToken)
-    if (currentToken === 'X') {
-      playerToken = '0'
+      checkForWinner(currentToken)
+      ui.gridSelection(playerToken)
+      if (currentToken === 'X') {
+        playerToken = '0'
+      } else {
+        playerToken = 'X'
+      }
     } else {
-      playerToken = 'X'
+      // display spot occupied
     }
-    ui.gridSelection(playerToken)
   }
 }
 
