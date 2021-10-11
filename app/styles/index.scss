@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+.title {
+position: fixed;
+left: 20px
+}
+
 .border {
   border: 5px solid black;
   margin: 20px;
@@ -15,6 +20,12 @@ form {
 .game-page {
   display: none;
   padding: 0 20 20 20
+}
+
+#sign-out {
+  padding: 0;
+  width: 10vw;
+  height: 2.5vh
 }
 
 #currentPlayer {
@@ -57,4 +68,8 @@ form {
   height: 12vh;
   width: 38vw;
   font-size: 36px;
+}
+
+.play-again {
+  display: none
 }

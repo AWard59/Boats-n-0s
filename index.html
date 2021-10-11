@@ -13,34 +13,27 @@
     </head>
     <body>
       <!-- Import Nav Bar from bootstrap -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
+      <nav class="navbar navbar-light bg-light justify-content-end">
+        <div class="title nav-item">
+          <h3>Tic-Tac-Toe</h3>
+        </div>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"></a>
+          </li>
+          <li class="nav-item">
             <div class="game-page" id="sign-out-failure"></div>
+          </li>
+          <li class="nav-item">
             <!-- create a 'sign out' button on the nav bar -->
             <button class="game-page btn btn-danger" id="sign-out">Sign Out</button>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item">Action</a>
-                <a class="dropdown-item">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Something else here</a>
-              </div>
-            </li>
+          </li>
           </ul>
-        </div>
       </nav>
+
       <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
       <section id="sign-in-page">
         <form id="sign-up" class="border">
@@ -84,21 +77,39 @@
         </div>
         <div class="container-fluid">
           <div class="row">
-              <div class="col col-xs-4 box game-grid" id="0" data-occupied="">0</div>
-              <div class="col col-xs-4 box game-grid" id="1" data-occupied="">1</div>
-              <div class="col col-xs-4 box game-grid" id="2" data-occupied="">2</div>
+              <div class="col col-xs-4 box game-grid" id="0"></div>
+              <div class="col col-xs-4 box game-grid" id="1"></div>
+              <div class="col col-xs-4 box game-grid" id="2"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid" id="3" data-occupied="">3</div>
-              <div class="col col-xs-4 box game-grid" id="4" data-occupied="">4</div>
-              <div class="col col-xs-4 box game-grid" id="5" data-occupied="">5</div>
+              <div class="col col-xs-4 box game-grid" id="3"></div>
+              <div class="col col-xs-4 box game-grid" id="4"></div>
+              <div class="col col-xs-4 box game-grid" id="5"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid" id="6" data-occupied="">6</div>
-              <div class="col col-xs-4 box game-grid" id="7" data-occupied="">7</div>
-              <div class="col col-xs-4 box game-grid" id="8" data-occupied="">8</div>
+              <div class="col col-xs-4 box game-grid" id="6"></div>
+              <div class="col col-xs-4 box game-grid" id="7"></div>
+              <div class="col col-xs-4 box game-grid" id="8"></div>
           </div>
         </div>
         <div id="new-game-button">
           <button class="btn btn-primary">New Game</button>
+        </div>
+
+        <div class="modal play-again" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title modal-outcome"></h5>
+                <button type="button" class="btn-close modal-exit" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Play Again?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-exit" data-bs-dismiss="modal">No thanks</button>
+                <button type="button" class="btn btn-primary modal-play-again">New Game</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </body>

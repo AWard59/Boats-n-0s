@@ -97,13 +97,26 @@ const gridSelection = function (playerToken) {
 }
 
 const gameOver = function (playerToken) {
-  console.log(playerToken + ' wins') // testing purposes
-  alert(`${playerToken} wins`)
+  // console.log(playerToken + ' wins') // testing purposes
+  $('.play-again').show()
+  $('.modal-outcome').text(`${playerToken} won the game!`)
 }
 
 const gameEndTie = function () {
-  console.log("it's a tie") // testing purposes
-  alert('It\'s a tie!')
+  // console.log("it's a tie") // testing purposes
+  $('.play-again').show()
+  $('.modal-outcome').text('It was a tie!')
+}
+
+const onExitGame = function () {
+  $('.play-again').hide()
+  $('#currentPlayer').text($('.modal-outcome').text())
+}
+
+const resetGameBoard = function () {
+  $('.play-again').hide()
+  $('.box').text('')
+  $('.box').removeClass('bg-primary bg-secondary')
 }
 
 module.exports = {
@@ -117,5 +130,7 @@ module.exports = {
   gridSelection,
   currentPlayer,
   gameOver,
-  gameEndTie
+  gameEndTie,
+  onExitGame,
+  resetGameBoard
 }
