@@ -13,4 +13,6 @@ $(() => {
   $('.game-grid').on('click', authEvents.onGridSelection)
   $('.modal-play-again').on('click', authEvents.onPlayAgain)
   $('.modal-exit').on('click', ui.onExitGame)
+  $('.box').on('mouseover', authEvents.onCellHover)
+  $('.box').on('mouseout', authEvents.offCellHover)
 })

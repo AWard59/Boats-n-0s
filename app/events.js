@@ -127,11 +127,34 @@ const onPlayAgain = function () {
   onNewGame()
 }
 
+// Check if the hovered box has an empty cell tracked in the array
+// if empty, apply pre-written box hover css
+// if not empty, apply the occupied variant
+const onCellHover = function (event) {
+  if (gameState) {
+    if (gameCellTracker[event.target.id] === '') {
+      $(event.target).addClass('box-hover')
+    } else {
+      $(event.target).addClass('box-hover-occupied')
+    }
+  }
+}
+
+// remove the box hover css when mouse leaves
+const offCellHover = function (event) {
+  if (gameState) {
+    $(event.target).removeClass('box-hover')
+    $(event.target).removeClass('box-hover-occupied')
+  }
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
   onNewGame,
   onGridSelection,
-  onPlayAgain
+  onPlayAgain,
+  onCellHover,
+  offCellHover
 }

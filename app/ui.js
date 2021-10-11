@@ -86,22 +86,24 @@ const currentPlayer = function (playerToken) {
 const gridSelection = function (playerToken) {
   if (playerToken === 'X') {
     $(event.target).addClass('bg-primary')
-    $(event.target).html('<h1 class="display-1">X</h1>')
+    $(event.target).text('X')
   } else {
     $(event.target).addClass('bg-secondary')
-    $(event.target).html('<h1 class="display-1">0</h1>')
+    $(event.target).text('0')
   }
   currentPlayer(playerToken)
 }
 
 const gameOver = function (playerToken) {
   // console.log(playerToken + ' wins') // testing purposes
+  $('.box').removeClass('box-hover')
   $('.play-again').show()
   $('.modal-outcome').text(`${playerToken} won the game!`)
 }
 
 const gameEndTie = function () {
   // console.log("it's a tie") // testing purposes
+  $('.box').removeClass('box-hover')
   $('.play-again').show()
   $('.modal-outcome').text('It was a tie!')
 }

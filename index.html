@@ -13,7 +13,7 @@
     </head>
     <body>
       <!-- Import Nav Bar from bootstrap -->
-      <nav class="navbar navbar-light justify-content-end">
+      <nav class="navbar navbar-light shadow justify-content-end">
         <div class="title nav-item">
           <h3>Tic-Tac-Toe</h3>
         </div>
@@ -29,42 +29,42 @@
           </li>
           <li class="nav-item">
             <!-- create a 'sign out' button on the nav bar -->
-            <button class="game-page btn btn-danger" id="sign-out">Sign Out</button>
+            <button class="game-page btn btn-danger shadow" id="sign-out">Sign Out</button>
           </li>
           </ul>
       </nav>
 
       <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
       <section id="sign-in-page">
-        <form id="sign-up" class="border">
+        <form id="sign-up" class="border shadow">
           <legend>Sign Up</legend>
           <div class="mb-3">
-            <input type="email" class="form-control" name ="credentials[email]" placeholder="Email Address" required>
+            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" name="credentials[password]" placeholder="Password" required>
+            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
+            <input type="password" class="form-control shadow" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
           </div>
-          <button type="submit" class="btn btn-success">Sign Up</button>
+          <button type="submit" class="btn btn-success shadow">Sign Up</button>
           <div id="sign-up-success"></div>
           <div id="sign-up-failure"></div>
         </form>
 
         <hr>
 
-        <form id="sign-in" class="border">
+        <form id="sign-in" class="border shadow">
           <legend>Sign In</legend>
           <div class="mb-3">
-            <input type="email" class="form-control" name ="credentials[email]" placeholder="Email Address" required>
+            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" name="credentials[password]" placeholder="Password" required>
+            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
           </div>
           <div class="mb-3">
           </div>
-          <button type="submit" class="btn btn-primary">Sign In</button>
+          <button type="submit" class="btn btn-primary shadow">Sign In</button>
           <div id="sign-in-success"></div>
           <div id="sign-in-failure"></div>
         </form>
@@ -81,19 +81,19 @@
             <h3 id="game-messages"></h3>
           </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid border shadow">
           <div class="row">
-              <div class="col col-xs-4 box game-grid rounded" id="0"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="1"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="2"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="0"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="1"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="2"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="3"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="4"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="5"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="3"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="4"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="5"></div>
             <div class="row"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="6"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="7"></div>
-              <div class="col col-xs-4 box game-grid rounded" id="8"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="6"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="7"></div>
+              <div class="col col-xs-4 box game-grid rounded display-1" id="8"></div>
           </div>
         </div>
         <div id="new-game-button">
