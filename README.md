@@ -5,8 +5,8 @@ This application is a fully functioning Tic-Tac-Toe game, but with Butter, Chees
 ## Setup Steps
 
 1. Fork and clone this repository.
-1. Run `npm install` to install all dependencies
-1. Use `grunt serve` to spin up the server.
+2. Run `npm install` to install all dependencies
+3. Use `grunt serve` to spin up the server.
 
 ## Important Links
 
@@ -33,7 +33,7 @@ I chose to import Bootstrap for most of the physical objects. The bootstrap desi
 
 ### User Stories
 
-[User Stories](https://i.imgur.com/fdIzwHz.png)
+![User Stories](https://i.imgur.com/fdIzwHz.png)
 
 ### Technologies Used
 
@@ -46,9 +46,12 @@ I chose to import Bootstrap for most of the physical objects. The bootstrap desi
 
 The only currently known issue is that the player token counter is displaying before the game even starts. I can fix this with a simple hide, and then show on new game click.
 
-Features I want to implement:-
+#### Features I want to implement:-
 - Change password option
-- Game display messages (new game started, spot occupied, cannot continue after game completion)
+- Game display messages 
+- - New game started
+- - Spot occupied
+- - Cannot continue after game completion
 - A record of games played
 - Play vs an AI
 - - Optional difficulty level vs AI
