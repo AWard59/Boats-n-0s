@@ -108,6 +108,8 @@ const checkForWinner = function (playerToken) {
       continue
       // compare values for each index of the winning variations
     } else if (indexZero === indexOne && indexZero === indexTwo) {
+      // gameState will stop the game being played upon completion
+      gameState = false
       ui.gameOver(playerToken)
       // break (stop) the loop if successful
       break
@@ -115,6 +117,7 @@ const checkForWinner = function (playerToken) {
   }
   // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
   if (!gameCellTracker.includes('')) {
+    gameState = false
     ui.gameEndTie()
   }
 }
