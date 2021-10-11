@@ -12,7 +12,7 @@ const ui = require('./ui')
 let playerToken = 'X'
 let gameState = false
 // empty array to track tokens placed in each cell
-const gameCellTracker = ['', '', '', '', '', '', '', '', '']
+let gameCellTracker = ['', '', '', '', '', '', '', '', '']
 // All possible variations of winning conditions
 // stored as variable to reduce amount of code to check later, via a loop
 const winVariations = [
@@ -66,27 +66,26 @@ const onNewGame = function () {
 // Check if the clicked grid section has already been occupied/played (data result can either be 'x', '0' or '' empty string. empty string is available to play)
 // If not occupied, apply the current token, x or 0, to the data to lock it
 // switch the token for the next player, X>0, or 0>X
-const gridSelection = function (event) {
+const onGridSelection = function (event) {
   const currentToken = playerToken
   // gameState is default false, until we click New Game button for function onNewGame above
   // until the button is clicked, the grid has no functionality
   if (gameState) {
     const target = event.target
     // console.log('clicked ' + target.id) // testing purposes
-    // console.log(target.dataset.occupied) // testing purposes
-    if (target.dataset.occupied === '') {
-      target.dataset.occupied = currentToken
-      // console.log(target.dataset.occupied) // testing purposes
-      gameCellTracker[target.id] = currentToken
-      console.log(gameCellTracker) // testing purposes
-      checkForWinner(currentToken)
-      if (currentToken === 'X') {
-        playerToken = '0'
-      } else {
-        playerToken = 'X'
-      }
-      ui.gridSelection(playerToken)
+    if (gameCellTracker[event.target.id] === '') {
+      gameCellTracker[event.target.id] = currentToken
+      // console.log(gameCellTracker) // testing purposes
     }
+    gameCellTracker[target.id] = currentToken
+    // console.log(gameCellTracker) // testing purposes
+    checkForWinner(currentToken)
+    if (currentToken === 'X') {
+      playerToken = '0'
+    } else {
+      playerToken = 'X'
+    }
+    ui.gridSelection(playerToken)
   }
 }
 
@@ -101,7 +100,7 @@ const checkForWinner = function (playerToken) {
     const indexZero = gameCellTracker[indexWinVariations[0]]
     const indexOne = gameCellTracker[indexWinVariations[1]]
     const indexTwo = gameCellTracker[indexWinVariations[2]]
-    console.log(`${i} = ${indexZero}, ${indexOne}, ${indexTwo}`) // testing purposes
+    // console.log(`${i} = ${indexZero}, ${indexOne}, ${indexTwo}`) // testing purposes
     // first, check that no index values are an empty string
     // (without the check, if all 3 were empty it would pass our game win check)
     if (indexZero === '' || indexOne === '' || indexTwo === '') {
@@ -113,13 +112,19 @@ const checkForWinner = function (playerToken) {
       ui.gameOver(playerToken)
       // break (stop) the loop if successful
       break
+      // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
+    } else if (!gameCellTracker.includes('')) {
+      gameState = false
+      ui.gameEndTie()
     }
   }
-  // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
-  if (!gameCellTracker.includes('')) {
-    gameState = false
-    ui.gameEndTie()
-  }
+}
+
+const onPlayAgain = function () {
+  playerToken = 'X'
+  gameCellTracker = ['', '', '', '', '', '', '', '', '']
+  ui.resetGameBoard()
+  onNewGame()
 }
 
 module.exports = {
@@ -127,5 +132,6 @@ module.exports = {
   onSignIn,
   onSignOut,
   onNewGame,
-  gridSelection
+  onGridSelection,
+  onPlayAgain
 }
