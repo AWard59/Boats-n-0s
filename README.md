@@ -13,7 +13,7 @@ This application is a fully functioning Tic-Tac-Toe game, but with Butter, Chees
 - [Deployed Client](https://award59.github.io/tic-tac-toe-client/)
 
 ## Screenshot
-![Game Page screenshot](https://imgur.com/NzZr7z6)
+![Game Page screenshot](https://imgur.com/NzZr7z6.png)
 
 ## Planning Story
 
