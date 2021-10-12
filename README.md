@@ -11,6 +11,7 @@ This application is a fully functioning Tic-Tac-Toe game, but with Butter, Chees
 ## Important Links
 
 - [Deployed Client](https://award59.github.io/tic-tac-toe-client/)
+- [Box Shadow Glow Generator](https://www.cssmatic.com/box-shadow)
 
 ## Screenshot
 ![Game Page screenshot](https://imgur.com/NzZr7z6.png)
@@ -59,6 +60,6 @@ The only currently known issue is that the player token counter is displaying be
 - Restore previous game state
 - Further simplify sign in/up page
 - More styling 
-- - grid square glow on hover
+- - ~~grid square glow on hover~~
 - - New tokens
-- - box shading and rounded edges
+- - ~~box shading and rounded edges~~
