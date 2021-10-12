@@ -59,7 +59,6 @@ const onNewGame = function () {
   api.newGame()
     .then(ui.newGameStart)
     .then(gameState = true)
-    .then(ui.currentPlayer(playerToken))
     .catch(ui.signOutFailure)
 }
 
@@ -76,17 +75,19 @@ const onGridSelection = function (event) {
     if (gameCellTracker[target.id] === '') {
       gameCellTracker[target.id] = currentToken
       // console.log(gameCellTracker) // testing purposes
-      checkForWinner(currentToken)
-      ui.gridSelection(playerToken)
+      ui.gridSelection(currentToken)
       if (currentToken === 'X') {
         playerToken = '0'
       } else {
         playerToken = 'X'
       }
+      checkForWinner(currentToken)
+      // ui.currentPlayer(currentToken)
     } else {
-      // display spot occupied
+      console.log('hi')
     }
   }
+  return playerToken
 }
 
 // loop through 8 iterations of 8 possible winning outcomes (index 0-7)
