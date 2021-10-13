@@ -63,6 +63,7 @@ const signInFailure = function (err) {
 
 // hide game-page and show sign-in-page
 const signOutSuccess = function (responseData) {
+  resetGameBoard()
   $('.game-page').hide()
   $('#sign-in-page').show()
 
@@ -124,6 +125,7 @@ const gameEndTie = function () {
 
 const onExitGame = function () {
   $('.play-again').hide()
+
   $('#currentPlayer').text($('.modal-outcome').text())
 }
 
