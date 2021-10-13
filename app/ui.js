@@ -6,6 +6,7 @@ const gameMessagesRestore = function () {
   $('#game-messages').empty()
   $('#game-messages').show()
   $('#game-messages').removeClass()
+  $('#game-messages').stop(true, true)
 }
 
 // Create a text response (in html) for successful outcome suggesting sign in to continue
@@ -19,7 +20,7 @@ const signUpSuccess = function (responseData) {
 
   $('form').trigger('reset')
 
-  console.log(responseData)
+  // console.log(responseData)
 }
 
 // text response stating failure, addclass text danger (red)
@@ -45,6 +46,7 @@ const signInSuccess = function (responseData) {
   $('form').trigger('reset')
   $('#sign-in-page').hide()
   $('.game-page').show()
+  $('#new-game-nav').hide()
 
   $('#game-messages').text('Signed in successfully!')
   $('#game-messages').addClass('text-success')
@@ -65,9 +67,10 @@ const signInFailure = function (err) {
 const signOutSuccess = function (responseData) {
   resetGameBoard()
   $('.game-page').hide()
+  $('#change-password-page').hide()
   $('#sign-in-page').show()
 
-  console.log(responseData)
+  // console.log(responseData)
 }
 
 const signOutFailure = function (err) {
@@ -79,16 +82,37 @@ const signOutFailure = function (err) {
   console.error(err)
 }
 
+const onChangePassBtnClick = function () {
+  $('.game-page').hide()
+  $('#change-password-page').show()
+  $('#sign-out').show()
+  $('#new-game-nav').show()
+}
+
+const changePasswordSuccess = function () {
+  $('#change-password-success').text('Password Changed Successfully!')
+  $('#change-password-success').removeClass()
+  $('#change-password-success').addClass('text-success')
+  $('#change-password-success').fadeOut(5000)
+
+  $('form').trigger('reset')
+}
+
+const changePasswordFailure = function (err) {
+  $('#change-password-failure').text('Password Change Failed')
+  $('#change-password-failure').removeClass()
+  $('#change-password-failure').addClass('text-danger')
+  $('#change-password-failure').fadeOut(5000)
+
+  console.error(err)
+}
 // Hide the button covering the game board
 // change css value of box's opacity to 1 (was 0.3)
 const newGameStart = function () {
   $('#new-game-button').hide()
   $('.box').css('opacity', '1')
   $('#current-player').css('visibility', 'visible')
-
   gameMessagesRestore()
-  $('#game-messages').stop(true, true)
-  // $('#game-messages').css('visibility', 'visible')
   $('#game-messages').text('New Game Started!')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
@@ -143,6 +167,9 @@ module.exports = {
   signInFailure,
   signOutSuccess,
   signOutFailure,
+  onChangePassBtnClick,
+  changePasswordSuccess,
+  changePasswordFailure,
   newGameStart,
   gridSelection,
   gameOver,

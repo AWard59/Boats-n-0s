@@ -28,8 +28,10 @@
             <div class="game-page" id="sign-out-failure"></div>
           </li>
           <li class="nav-item">
+            <button class="game-page btn-primary shadow nav-button new-game" id="new-game-nav">New Game</button>
+            <button class="game-page btn-info shadow nav-button" id="change-password-button">Change Password</button>
             <!-- create a 'sign out' button on the nav bar -->
-            <button class="game-page btn btn-danger shadow" id="sign-out">Sign Out</button>
+            <button class="game-page btn btn-danger shadow nav-button" id="sign-out">Sign Out</button>
           </li>
           </ul>
 
@@ -98,7 +100,7 @@
           </div>
         </div>
         <div id="new-game-button">
-          <button class="btn btn-primary">New Game</button>
+          <button class="btn btn-primary new-game">New Game</button>
         </div>
 
         <!-- play again modal -->
@@ -113,12 +115,27 @@
                 <p>Play Again?</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary modal-exit" data-bs-dismiss="modal">No thanks</button>
-                <button type="button" class="btn btn-primary modal-play-again">New Game</button>
+                <button type="button" class="btn btn-secondary modal-exit shadow" data-bs-dismiss="modal">No thanks</button>
+                <button type="button" class="btn btn-primary modal-play-again shadow">New Game</button>
               </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <section id="change-password-page">
+        <form id="change-password" class="border shadow">
+          <legend>Change Password</legend>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="passwords[old]" placeholder="Old Password" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="passwords[new]" placeholder="New Password" required>
+          </div>
+          <button type="submit" class="btn btn-success shadow">Submit</button>
+          <div id="change-password-success"></div>
+          <div id="change-password-failure"></div>
+        </form>
       </section>
     </body>
 </html>
