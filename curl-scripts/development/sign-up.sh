@@ -1,4 +1,4 @@
-# EMAIL= PASSWORD= sh curl-scripts/sign-up.sh
+# EMAIL= PASSWORD= sh curl-scripts/development/sign-up.sh
 
 curl "https://tic-tac-toe-api-development.herokuapp.com/sign-up" \
   --include \
