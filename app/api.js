@@ -31,6 +31,17 @@ const signOut = function () {
   })
 }
 
+const changePassword = function (formData) {
+  return $.ajax({
+    url: `${config.apiUrl}/change-password`,
+    method: 'PATCH',
+    data: formData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 // Again checking token vs created token on login, create an empty game object applied to this user
 const newGame = function () {
   return $.ajax({
@@ -47,5 +58,6 @@ module.exports = {
   signUp,
   signIn,
   signOut,
+  changePassword,
   newGame
 }
