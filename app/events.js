@@ -95,8 +95,10 @@ const onGridSelection = function (event) {
       checkForWinner(currentToken)
       // ui.currentPlayer(currentToken)
     } else {
-      console.log('hi')
+      ui.spotOccupied()
     }
+  } else {
+    ui.gameNotInPlay()
   }
   return playerToken
 }

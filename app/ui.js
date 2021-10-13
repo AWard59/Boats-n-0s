@@ -3,10 +3,8 @@
 const store = require('./store')
 
 const gameMessagesRestore = function () {
-  $('#game-messages').empty()
   $('#game-messages').show()
   $('#game-messages').removeClass()
-  $('#game-messages').stop(true, true)
 }
 
 // Create a text response (in html) for successful outcome suggesting sign in to continue
@@ -113,7 +111,7 @@ const newGameStart = function () {
   $('.box').css('opacity', '1')
   $('#current-player').css('visibility', 'visible')
   gameMessagesRestore()
-  $('#game-messages').text('New Game Started!')
+  $('#game-messages').hhtml('<h3>New Game Started!</h3>')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
 }
@@ -133,6 +131,20 @@ const gridSelection = function (playerToken) {
   }
 }
 
+const spotOccupied = function () {
+  gameMessagesRestore()
+  $('#game-messages').html('<h3>That spot is already taken. Choose another.</h3>')
+  $('#game-messages').addClass('text-danger')
+  $('#game-messages').fadeOut(2000)
+}
+
+const gameNotInPlay = function () {
+  gameMessagesRestore()
+  $('#game-messages').html('<h3>The game is not in play. Start a new game first</h3>')
+  $('#game-messages').addClass('text-danger')
+  $('#game-messages').fadeOut(2500)
+}
+
 const gameOver = function (playerToken) {
   // console.log(playerToken + ' wins') // testing purposes
   $('.box').removeClass('box-hover')
@@ -149,7 +161,7 @@ const gameEndTie = function () {
 
 const onExitGame = function () {
   $('.play-again').hide()
-
+  $('#new-game-nav').show()
   $('#currentPlayer').text($('.modal-outcome').text())
 }
 
@@ -172,6 +184,8 @@ module.exports = {
   changePasswordFailure,
   newGameStart,
   gridSelection,
+  spotOccupied,
+  gameNotInPlay,
   gameOver,
   gameEndTie,
   onExitGame,
