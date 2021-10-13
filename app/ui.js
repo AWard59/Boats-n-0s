@@ -86,6 +86,8 @@ const newGameStart = function () {
   $('#current-player').css('visibility', 'visible')
 
   gameMessagesRestore()
+  $('#game-messages').stop(true, true)
+  // $('#game-messages').css('visibility', 'visible')
   $('#game-messages').text('New Game Started!')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
@@ -129,6 +131,7 @@ const resetGameBoard = function () {
   $('.play-again').hide()
   $('.box').text('')
   $('.box').removeClass('bg-primary bg-secondary')
+  $('#current-player').text('Current Player: X')
 }
 
 module.exports = {
