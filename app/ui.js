@@ -111,7 +111,7 @@ const newGameStart = function () {
   $('.box').css('opacity', '1')
   $('#current-player').css('visibility', 'visible')
   gameMessagesRestore()
-  $('#game-messages').hhtml('<h3>New Game Started!</h3>')
+  $('#game-messages').html('<h3>New Game Started!</h3>')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
 }
@@ -123,7 +123,7 @@ const gridSelection = function (playerToken) {
     $(event.target).addClass('bg-primary')
     $(event.target).text('X')
     $('#current-player').text('Current Player: 0')
-    console.log('#current-player')
+    // console.log('#current-player')
   } else {
     $(event.target).addClass('bg-secondary')
     $(event.target).text('0')
@@ -189,5 +189,5 @@ module.exports = {
   gameOver,
   gameEndTie,
   onExitGame,
-  resetGameBoard
+  resetGameBoard,
 }
