@@ -48,11 +48,11 @@ I chose to import Bootstrap for most of the physical objects. The bootstrap desi
 The only currently known issue is that the player token counter is displaying before the game even starts. I can fix this with a simple hide, and then show on new game click.
 
 #### Features I want to implement:-
-- Change password option
-- Game display messages 
-- - New game started
-- - Spot occupied
-- - Cannot continue after game completion
+- ~~Change password option~~
+- ~~Game display messages~~
+- - ~~New game started~~
+- - ~~Spot occupied~~
+- - ~~Cannot continue after game completion~~
 - A record of games played
 - Play vs an AI
 - - Optional difficulty level vs AI
