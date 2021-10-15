@@ -58,7 +58,6 @@ const updateGame = function (currentToken, indexId, winValue, gameId) {
   if (currentToken === 'X') {
     currentToken = 'x'
   }
-  console.log(currentToken, indexId, winValue, gameId, 'api')
   return $.ajax({
     url: config.apiUrl + '/games/' + gameId,
     method: 'PATCH',

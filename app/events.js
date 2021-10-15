@@ -23,7 +23,7 @@ let gameCellTracker = ['', '', '', '', '', '', '', '', '']
 const winVariations = [
   [0, 1, 2],
   [3, 4, 5],
-  [6, 7, 8],
+  [6, 7, 8],ß
   [0, 3, 6],
   [1, 4, 7],
   [2, 5, 8],
@@ -45,7 +45,7 @@ const onSignUp = function (event) {
 
 const onSignIn = function (event) {
   event.preventDefault()
-
+  gameCellTracker = ['', '', '', '', '', '', '', '', '']
   const form = event.target
   const formData = getFormFields(form)
 
@@ -78,6 +78,9 @@ const onNewGame = function () {
     .catch(ui.signOutFailure)
 }
 
+// change game state to allow the game to be played
+// store the game id in a variable to be retrieved for PATCH
+// call the UI function to prepare the game board for a new game
 const newGameData = function (data) {
   gameState = true
   gameId = data.game._id
@@ -85,6 +88,8 @@ const newGameData = function (data) {
   return gameId
 }
 
+// retrieve the grid ID and the player token to store into a global variable
+// this information can then be retrieved for PATCH
 const onGridSelectionValues = function (eventId, currentToken) {
   id = eventId
   token = currentToken
@@ -98,10 +103,13 @@ const onGridSelection = function (event) {
   // gameState is default false, until we click New Game button for function onNewGame above
   // until the button is clicked, the grid has no functionality
   if (gameState) {
-    // const targetId = event.target.id
+    // with event.target, get the id 0-8
+    // with the id, compare it to the game tracking array with the same index
+    // if empty, place token
     if (gameCellTracker[id] === '') {
       gameCellTracker[id] = token
       ui.gridSelection(token)
+      // switch the tracked token for the next player
       if (token === 'X') {
         playerToken = '0'
       } else {
@@ -137,13 +145,11 @@ const checkForWinner = function (token, id) {
       // gameState will stop the game being played upon completion
       gameState = false
       ui.gameOver(playerToken)
-      // console.log(token, id, false)
       console.log(gameCellTracker)
       // break (stop) the loop if successful
       break
       // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
     } else if (!gameCellTracker.includes('')) {
-      console.log(token, id, false)
       gameState = false
       ui.gameEndTie()
       break
@@ -152,6 +158,7 @@ const checkForWinner = function (token, id) {
   api.updateGame(token, id, false, gameId)
 }
 
+// reset the playerToken to X, and the game cell tracker to empty for a new game
 const onPlayAgain = function () {
   playerToken = 'X'
   gameCellTracker = ['', '', '', '', '', '', '', '', '']

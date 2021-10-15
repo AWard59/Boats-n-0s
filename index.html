@@ -28,7 +28,9 @@
             <div class="game-page" id="sign-out-failure"></div>
           </li>
           <li class="nav-item">
+            <!-- create a 'new game' button on the nav bar -->
             <button class="game-page btn-primary shadow nav-button new-game" id="new-game-nav">New Game</button>
+            <!-- create a 'change password' button on the nav bar -->
             <button class="game-page btn-info shadow nav-button" id="change-password-button">Change Password</button>
             <!-- create a 'sign out' button on the nav bar -->
             <button class="game-page btn btn-danger shadow nav-button" id="sign-out">Sign Out</button>
@@ -76,7 +78,9 @@
       <!-- game page sectioned - 3x3 grid created with bootstrap flexbox -->
       <section class="game-page">
         <div class="row">
-          <div class="col col-xs-4"></div>
+          <div class="col col-xs-4">
+            <div id="gameStats"></div>
+          </div>
           <div class="col col-xs-4">
             <span id="current-player">Current Player: X</span>
           </div>

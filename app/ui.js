@@ -17,8 +17,6 @@ const signUpSuccess = function (responseData) {
   $('#sign-up-success').fadeOut(5000)
 
   $('form').trigger('reset')
-
-  // console.log(responseData)
 }
 
 // text response stating failure, addclass text danger (red)
@@ -27,7 +25,6 @@ const signUpFailure = function (err) {
   $('#sign-up-failure').removeClass()
   $('#sign-up-failure').addClass('text-danger')
   $('#sign-up-failure').fadeOut(5000)
-
   console.error(err)
 }
 
@@ -49,7 +46,8 @@ const signInSuccess = function (responseData) {
   $('#game-messages').text('Signed in successfully!')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(2000)
-  // console.log(responseData) // testing purposes
+
+  resetGameBoard()
 }
 
 const signInFailure = function (err) {
@@ -107,6 +105,8 @@ const changePasswordFailure = function (err) {
 // Hide the button covering the game board
 // change css value of box's opacity to 1 (was 0.3)
 const newGameStart = function () {
+  resetGameBoard()
+  $('.play-again').hide()
   $('#new-game-button').hide()
   $('.box').css('opacity', '1')
   $('#current-player').css('visibility', 'visible')
@@ -123,7 +123,6 @@ const gridSelection = function (playerToken) {
     $(event.target).addClass('bg-primary')
     $(event.target).text('X')
     $('#current-player').text('Current Player: 0')
-    // console.log('#current-player')
   } else {
     $(event.target).addClass('bg-secondary')
     $(event.target).text('0')
@@ -146,14 +145,12 @@ const gameNotInPlay = function () {
 }
 
 const gameOver = function (playerToken) {
-  // console.log(playerToken + ' wins') // testing purposes
   $('.box').removeClass('box-hover')
   $('.play-again').show()
   $('.modal-outcome').text(`${playerToken} won the game!`)
 }
 
 const gameEndTie = function () {
-  // console.log("it's a tie") // testing purposes
   $('.box').removeClass('box-hover')
   $('.play-again').show()
   $('.modal-outcome').text('It was a tie!')
@@ -166,7 +163,6 @@ const onExitGame = function () {
 }
 
 const resetGameBoard = function () {
-  $('.play-again').hide()
   $('.box').text('')
   $('.box').removeClass('bg-primary bg-secondary')
   $('#current-player').text('Current Player: X')
@@ -189,5 +185,5 @@ module.exports = {
   gameOver,
   gameEndTie,
   onExitGame,
-  resetGameBoard,
+  resetGameBoard
 }

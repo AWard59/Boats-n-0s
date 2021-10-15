@@ -46,8 +46,14 @@ form {
 }
 
 @media screen and (min-width: 700px) {
-  #sign-out {
+  .nav-button{
     font-size: 12px
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .nav-button{
+    font-size: 8px
   }
 }
 
