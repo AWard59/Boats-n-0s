@@ -1,6 +1,12 @@
-# Butter, Cheese & Eggs: A Variation of Tic-Tac-Toe
+# Boats & 0's
 
-This application is a fully functioning Tic-Tac-Toe game, but with Butter, Cheese & Eggs. I did some research on the name of the game, as for myself I have always known it as 'Noughts and Crosses'. I discovered that the Dutch call it 'Boter-kaas-en-eieren', which translates to 'Butter, Cheese and Eggs'. I thought this was a cool spin, so I adopted it for my project. 
+A variation of the classic 'Tic-Tac-Toe'. 
+The application requires a user to be signed up to be able to use it's features. Once signed up, it will be tracking the current and all previous games histories. 
+The game visually displays placed tokens. There is also a glow effect to make it even easier to see - blue for an empty space, red for occupied. 
+User will be alerted of any errors - during sign-in/sign-up/change password, or even during the game. 
+After game completion, it displays a result with the option to play again. The user can keep playing without requiring a single refresh or logging in again. 
+
+Go get you some boats and 0's!
 
 ## Setup Steps
 
@@ -11,9 +17,9 @@ This application is a fully functioning Tic-Tac-Toe game, but with Butter, Chees
 ## Important Links
 
 - [Deployed Client](https://award59.github.io/tic-tac-toe-client/)
-- [Box Shadow Glow Generator](https://www.cssmatic.com/box-shadow)
 
 ## Screenshot
+
 ![Game Page screenshot](https://imgur.com/NzZr7z6.png)
 
 ## Planning Story
@@ -45,21 +51,24 @@ I chose to import Bootstrap for most of the physical objects. The bootstrap desi
 
 ### Unsolved Problems & Future Features
 
-The only currently known issue is that the player token counter is displaying before the game even starts. I can fix this with a simple hide, and then show on new game click.
+No currently known issues as of this commit.
 
 #### Features I want to implement:-
-- ~~Change password option~~
-- ~~Game display messages~~
-- - ~~New game started~~
-- - ~~Spot occupied~~
-- - ~~Cannot continue after game completion~~
-- A record of games played
+
+- Display number of games won
+- A visible record of games played
+- Restore previous game state
 - Play vs an AI
 - - Optional difficulty level vs AI
 - - Ability to choose token/randomize
-- Restore previous game state
-- Further simplify sign in/up page
 - More styling 
-- - ~~grid square glow on hover~~
+- - Further simplify sign in/up page
 - - New tokens
-- - ~~box shading and rounded edges~~
+- Automatic Sign in after sign up
+- Stay signed in on refresh
+
+### Useful resources
+
+- [Box Shadow Glow Generator](https://www.cssmatic.com/box-shadow)
+- - This was used to create the glow effect of cells
+- - There is also a rounded edge feature which I used
