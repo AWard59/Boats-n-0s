@@ -50,13 +50,11 @@ const signInSuccess = function (responseData) {
   resetGameBoard()
 }
 
-const signInFailure = function (err) {
+const signInFailure = function () {
   $('#sign-in-failure').text('Sign in failed')
   $('#sign-in-failure').removeClass()
   $('#sign-in-failure').addClass('text-danger')
   $('#sign-in-failure').fadeOut(5000)
-
-  console.error(err)
 }
 
 // hide game-page and show sign-in-page
@@ -65,17 +63,13 @@ const signOutSuccess = function (responseData) {
   $('.game-page').hide()
   $('#change-password-page').hide()
   $('#sign-in-page').show()
-
-  // console.log(responseData)
 }
 
-const signOutFailure = function (err) {
+const signOutFailure = function () {
   $('#sign-out-failure').text('Sign out failed')
   $('#sign-out-failure').removeClass()
   $('#sign-out-failure').addClass('text-danger')
   $('#sign-out-failure').fadeOut(5000)
-
-  console.error(err)
 }
 
 const onChangePassBtnClick = function () {
@@ -94,13 +88,11 @@ const changePasswordSuccess = function () {
   $('form').trigger('reset')
 }
 
-const changePasswordFailure = function (err) {
+const changePasswordFailure = function () {
   $('#change-password-failure').text('Password Change Failed')
   $('#change-password-failure').removeClass()
   $('#change-password-failure').addClass('text-danger')
   $('#change-password-failure').fadeOut(5000)
-
-  console.error(err)
 }
 // Hide the button covering the game board
 // change css value of box's opacity to 1 (was 0.3)
@@ -114,6 +106,13 @@ const newGameStart = function () {
   $('#game-messages').html('<h3>New Game Started!</h3>')
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
+}
+
+// length of games from the array gives a total of all games played
+// display the total on UI
+const gameHistoryTracker = function (gameData) {
+  const gamesPlayed = gameData.games.length
+  $('#game-stats').text('Total Games Played: ' + gamesPlayed)
 }
 
 // add bootstrap primary/secondary bg color, and X/0 text
@@ -185,5 +184,6 @@ module.exports = {
   gameOver,
   gameEndTie,
   onExitGame,
-  resetGameBoard
+  resetGameBoard,
+  gameHistoryTracker
 }

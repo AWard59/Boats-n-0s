@@ -43,7 +43,7 @@ const changePassword = function (formData) {
 }
 
 // Again checking token vs created token on login, create an empty game object applied to this user
-const newGame = function (data) {
+const newGame = function () {
   return $.ajax({
     url: `${config.apiUrl}/games`,
     method: 'POST',
@@ -76,11 +76,21 @@ const updateGame = function (currentToken, indexId, winValue, gameId) {
   })
 }
 
+const getGames = function () {
+  return $.ajax({
+    url: `${config.apiUrl}/games`,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
   newGame,
-  updateGame
+  updateGame,
+  getGames
 }

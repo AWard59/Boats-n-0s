@@ -15,6 +15,7 @@ let gameState = false
 let token = ''
 let id = ''
 let gameId = ''
+let gameData
 
 // empty array to track tokens placed in each cell
 let gameCellTracker = ['', '', '', '', '', '', '', '', '']
@@ -51,7 +52,18 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(ui.signInSuccess)
+    .then(getGamesHistory())
     .catch(ui.signInFailure)
+}
+
+// make an API request to retrieve an object of all games played
+// set timeout because sometimes the GET request is returned before
+// the POST request of sign in, meaning no token and an error
+const getGamesHistory = function () {
+  gameData = setTimeout(() => {
+    api.getGames()
+      .then(ui.gameHistoryTracker)
+  }, 1000)
 }
 
 const onSignOut = function () {
@@ -85,6 +97,7 @@ const newGameData = function (data) {
   gameState = true
   gameId = data.game._id
   ui.newGameStart()
+  getGamesHistory()
   return gameId
 }
 
@@ -144,13 +157,14 @@ const checkForWinner = function (token, id) {
     } else if (indexZero === indexOne && indexZero === indexTwo) {
       // gameState will stop the game being played upon completion
       gameState = false
+      api.updateGame(token, id, true, gameId)
       ui.gameOver(playerToken)
-      console.log(gameCellTracker)
       // break (stop) the loop if successful
       break
       // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
     } else if (!gameCellTracker.includes('')) {
       gameState = false
+      api.updateGame(token, id, true, gameId)
       ui.gameEndTie()
       break
     }
