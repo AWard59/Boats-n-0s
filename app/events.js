@@ -9,10 +9,10 @@ const api = require('./api')
 const ui = require('./ui')
 
 // hard code starting player token as X, as X always starts first
-let playerToken = 'X'
+// let playerToken = 'X'
 let gameState = false
 
-let token = ''
+let token = 'X'
 let id = ''
 let gameId = ''
 let gameData
@@ -63,7 +63,7 @@ const getGamesHistory = function () {
   gameData = setTimeout(() => {
     api.getGames()
       .then(ui.gameHistoryTracker)
-  }, 1000)
+  }, 1200)
 }
 
 const onSignOut = function () {
@@ -112,7 +112,7 @@ const onGridSelectionValues = function (eventId, currentToken) {
 // If not occupied, apply the current token, x or 0, to the data to lock it
 // switch the token for the next player, X>0, or 0>X
 const onGridSelection = function (event) {
-  onGridSelectionValues(event.target.id, playerToken)
+  onGridSelectionValues(event.target.id, 'X')
   // gameState is default false, until we click New Game button for function onNewGame above
   // until the button is clicked, the grid has no functionality
   if (gameState) {
@@ -120,22 +120,22 @@ const onGridSelection = function (event) {
     // with the id, compare it to the game tracking array with the same index
     // if empty, place token
     if (gameCellTracker[id] === '') {
-      gameCellTracker[id] = token
-      ui.gridSelection(token)
+      gameCellTracker[id] = 'X'
+      ui.gridSelection('X')
       // switch the tracked token for the next player
-      if (token === 'X') {
-        playerToken = '0'
-      } else {
-        playerToken = 'X'
-      }
-      checkForWinner(token, id)
+      // if (token === 'X') {
+      //   playerToken = '0'
+      // } else {
+      //   playerToken = 'X'
+      // }
+      checkForWinner('X', id)
     } else {
       ui.spotOccupied()
     }
   } else {
     ui.gameNotInPlay()
   }
-  return (playerToken, id)
+  return ('X', id)
 }
 
 // loop through 8 iterations of 8 possible winning outcomes (index 0-7)
@@ -158,10 +158,11 @@ const checkForWinner = function (token, id) {
       // gameState will stop the game being played upon completion
       gameState = false
       api.updateGame(token, id, true, gameId)
-      ui.gameOver(playerToken)
+      ui.gameOver(token)
       // break (stop) the loop if successful
       break
-      // if no cells (!) in the tracker are blank, and no winner was confirmed from the loop,the game ends in a tie
+      // if no cells (!) in the tracker are empty, and no winner was confirmed from the loop,
+      // the game ends in a tie
     } else if (!gameCellTracker.includes('')) {
       gameState = false
       api.updateGame(token, id, true, gameId)
@@ -169,12 +170,19 @@ const checkForWinner = function (token, id) {
       break
     }
   }
+  console.log(token, id)
   api.updateGame(token, id, false, gameId)
+  if (token === 'X') {
+    token = '0'
+    dumbAI(token)
+  } else {
+    token = 'X'
+  }
 }
 
 // reset the playerToken to X, and the game cell tracker to empty for a new game
 const onPlayAgain = function () {
-  playerToken = 'X'
+  token = 'X'
   gameCellTracker = ['', '', '', '', '', '', '', '', '']
   ui.resetGameBoard()
   onNewGame()
@@ -199,6 +207,26 @@ const offCellHover = function (event) {
     $(event.target).removeClass('box-hover')
     $(event.target).removeClass('box-hover-occupied')
   }
+}
+
+const dumbAI = function (token) {
+  const availableSpaces = []
+  setTimeout(() => {
+    if (gameState) {
+      for (let i = 0; i < gameCellTracker.length; i++) {
+        if (gameCellTracker[i] === '') {
+          availableSpaces.push(i)
+        }
+      }
+      const placeAIToken = Math.floor(Math.random() * availableSpaces.length)
+      id = availableSpaces[placeAIToken]
+      gameCellTracker[id] = token
+      ui.gridSelection(token, id)
+      onGridSelectionValues(id, token)
+      checkForWinner(token, id)
+    }
+    return (token, id)
+  }, 1500)
 }
 
 module.exports = {

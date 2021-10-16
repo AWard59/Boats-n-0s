@@ -117,14 +117,14 @@ const gameHistoryTracker = function (gameData) {
 
 // add bootstrap primary/secondary bg color, and X/0 text
 // also changing the player counter at the top, between X and 0 depending on which player's turn
-const gridSelection = function (playerToken) {
-  if (playerToken === 'X') {
+const gridSelection = function (token, id) {
+  if (token === 'X') {
     $(event.target).addClass('bg-primary')
     $(event.target).text('X')
     $('#current-player').text('Current Player: 0')
   } else {
-    $(event.target).addClass('bg-secondary')
-    $(event.target).text('0')
+    $(`#${id}`).addClass('bg-secondary')
+    $(`#${id}`).text('0')
     $('#current-player').text('Current Player: X')
   }
 }
@@ -143,10 +143,10 @@ const gameNotInPlay = function () {
   $('#game-messages').fadeOut(2500)
 }
 
-const gameOver = function (playerToken) {
+const gameOver = function (token) {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
-  $('.modal-outcome').text(`${playerToken} won the game!`)
+  $('.modal-outcome').text(`${token} won the game!`)
 }
 
 const gameEndTie = function () {
