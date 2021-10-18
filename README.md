@@ -20,7 +20,11 @@ Go get you some boats and 0's!
 
 ## Screenshot
 
-![Game Page screenshot](https://imgur.com/NzZr7z6.png)
+![Sign In/Up Page](https://i.imgur.com/YVjXTyd.png)
+![Choose Opponent](https://i.imgur.com/EGGrrov.png)
+![Gameplay](https://i.imgur.com/BGAkIDa.png)
+![Change Password Screen](https://i.imgur.com/ikNXOPc.png)
+
 
 ## Planning Story
 
@@ -59,7 +63,6 @@ No currently known issues as of this commit.
 - Restore previous game state
 - More styling 
 - - Further simplify sign in/up page
-- - New tokens
 - Automatic Sign in after sign up
 - Stay signed in on refresh
 
