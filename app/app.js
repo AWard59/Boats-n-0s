@@ -18,4 +18,5 @@ $(() => {
   $('#change-password-button').on('click', ui.onChangePassBtnClick)
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('.choose-opponent').on('click', authEvents.onOpponentSelect)
+  $('.choose-opponent-button').on('click', ui.showOpponentOptions)
 })

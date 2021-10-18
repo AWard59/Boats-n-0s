@@ -88,8 +88,8 @@ const onSignIn = function (event) {
 
   api.signIn(formData)
     .then(ui.signInSuccess)
-    .then(getGamesHistory())
     .catch(ui.signInFailure)
+  getGamesHistory()
 }
 
 const onSignOut = function () {
@@ -112,7 +112,8 @@ const onChangePassword = function (event) {
 // opponent declared depending on user's button click choice
 const onOpponentSelect = function (event) {
   opponent = event.target.id
-  ui.opponentSelected()
+  const opponentDisplay = event.target.getAttribute('data-opponent-display')
+  ui.opponentSelected(opponentDisplay)
 }
 
 const onNewGame = function () {
@@ -129,6 +130,8 @@ const onNewGame = function () {
 const newGameData = function (data) {
   gameState = true
   gameId = data.game._id
+  turnCounter = 1
+  token = 'X'
   ui.newGameStart()
   getGamesHistory()
   return gameId
@@ -141,7 +144,7 @@ const getGamesHistory = function () {
   setTimeout(() => {
     api.getGames()
       .then(ui.gameHistoryTracker)
-  }, 1000)
+  }, 3000)
 }
 
 // Check if the clicked grid section has already been occupied/played (data result can either be 'x', '0' or '' empty string. empty string is available to play)

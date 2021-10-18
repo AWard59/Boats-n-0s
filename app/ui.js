@@ -97,8 +97,16 @@ const changePasswordFailure = function () {
   $('#change-password-failure').fadeOut(5000)
 }
 
-const opponentSelected = function () {
+const opponentSelected = function (opponentDisplay) {
   $('.choose-opponent').hide()
+  $('.play-again').hide()
+  $('#new-game-button').show()
+  resetGameBoard()
+  $('#opponent-display').text(`Opponent: ${opponentDisplay}`)
+}
+
+const showOpponentOptions = function () {
+  $('.choose-opponent').show()
 }
 // Hide the button covering the game board
 // change css value of box's opacity to 1 (was 0.3)
@@ -108,6 +116,7 @@ const newGameStart = function () {
   $('#new-game-button').hide()
   $('.box').css('opacity', '1')
   $('#current-player').css('visibility', 'visible')
+  $('#opponent-display').css('visibility', 'visible')
   gameMessagesRestore()
   $('#game-messages').html('<h3>New Game Started!</h3>')
   $('#game-messages').addClass('text-success')
@@ -187,6 +196,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   opponentSelected,
+  showOpponentOptions,
   newGameStart,
   gridSelection,
   spotOccupied,

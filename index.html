@@ -28,7 +28,7 @@
             <div class="game-page" id="sign-out-failure"></div>
           </li>
           <li class="nav-item">
-            <button class="game-page btn-info shadow nav-button choose-opponent" id="choose-opponent-nav">Choose Opponent</button>
+            <button class="game-page btn-info shadow nav-button choose-opponent choose-opponent-button" id="choose-opponent-nav">Choose Opponent</button>
             <!-- create a 'new game' button on the nav bar -->
             <button class="game-page btn-primary shadow nav-button new-game" id="new-game-nav">New Game</button>
             <!-- create a 'change password' button on the nav bar -->
@@ -79,11 +79,14 @@
       <!-- game page sectioned - 3x3 grid created with bootstrap flexbox -->
       <section class="game-page">
         <div class="row">
-          <div class="col col-xs-4">
+          <div class="col col-xs-2">
             <div id="game-stats"></div>
           </div>
           <div class="col col-xs-4">
             <span id="current-player">Current Player: X</span>
+          </div>
+          <div class="col col-xs-2">
+            <div id="opponent-display">12345r5667894567</div>
           </div>
           <div class="col col-xs-4">
             <div id="game-messages"></div>
@@ -120,7 +123,7 @@
                 <p>Play Again?</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-info shadow choose-opponent" id="choose-opponent-modal">Choose New Opponent</button>
+                <button type="button" class="btn btn-info shadow choose-opponent choose-opponent-button" id="choose-opponent-modal">Choose New Opponent</button>
                 <button type="button" class="btn btn-secondary modal-exit shadow" data-bs-dismiss="modal">No thanks</button>
                 <button type="button" class="btn btn-primary modal-play-again shadow">New Game</button>
               </div>
@@ -136,11 +139,11 @@
                 <h5 class="modal-title">Choose Your Opponent</h5>
               </div>
               <div class="modal-body"></div>
-              <button type="button" class="btn btn-success" id="dumbAI">Easy Computer</button>
+              <button type="button" class="btn btn-success" id="dumbAI" data-opponent-display="Easy Computer">Easy Computer</button>
               <br>
-              <button type="button" class="btn btn-warning" id="regularAI">Moderate Computer</button>
+              <button type="button" class="btn btn-warning" id="regularAI" data-opponent-display="Moderate Computer">Moderate Computer</button>
               <br>
-              <button type="button" class="btn btn-info" id="human">Human</button>
+              <button type="button" class="btn btn-info" id="human" data-opponent-display="Human">Human</button>
             </div>
           </div>
         </div>
