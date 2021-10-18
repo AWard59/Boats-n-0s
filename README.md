@@ -56,11 +56,7 @@ No currently known issues as of this commit.
 #### Features I want to implement:-
 
 - Display number of games won
-- A visible record of games played
 - Restore previous game state
-- Play vs an AI
-- - Optional difficulty level vs AI
-- - Ability to choose token/randomize
 - More styling 
 - - Further simplify sign in/up page
 - - New tokens
