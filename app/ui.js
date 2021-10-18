@@ -10,7 +10,7 @@ const gameMessagesRestore = function () {
 // Create a text response (in html) for successful outcome suggesting sign in to continue
 // add class of text success (green text) and have it fade away after 5 seconds
 // then reset all form data
-const signUpSuccess = function (responseData) {
+const signUpSuccess = function () {
   $('#sign-up-success').html('<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>')
   $('#sign-up-success').removeClass()
   $('#sign-up-success').addClass('text-success')
@@ -20,12 +20,11 @@ const signUpSuccess = function (responseData) {
 }
 
 // text response stating failure, addclass text danger (red)
-const signUpFailure = function (err) {
+const signUpFailure = function () {
   $('#sign-up-failure').text('Sign up failed')
   $('#sign-up-failure').removeClass()
   $('#sign-up-failure').addClass('text-danger')
   $('#sign-up-failure').fadeOut(5000)
-  console.error(err)
 }
 
 // hide the sign-in-page section from user's view. show the game-page section
@@ -47,6 +46,9 @@ const signInSuccess = function (responseData) {
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(2000)
 
+  $('.choose-opponent').show()
+  $('#choose-opponent-nav').hide()
+
   resetGameBoard()
 }
 
@@ -58,7 +60,7 @@ const signInFailure = function () {
 }
 
 // hide game-page and show sign-in-page
-const signOutSuccess = function (responseData) {
+const signOutSuccess = function () {
   resetGameBoard()
   $('.game-page').hide()
   $('#change-password-page').hide()
@@ -93,6 +95,10 @@ const changePasswordFailure = function () {
   $('#change-password-failure').removeClass()
   $('#change-password-failure').addClass('text-danger')
   $('#change-password-failure').fadeOut(5000)
+}
+
+const opponentSelected = function () {
+  $('.choose-opponent').hide()
 }
 // Hide the button covering the game board
 // change css value of box's opacity to 1 (was 0.3)
@@ -146,18 +152,21 @@ const gameNotInPlay = function () {
 const gameOver = function (token) {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
+  $('#choose-opponent-modal').show()
   $('.modal-outcome').text(`${token} won the game!`)
 }
 
 const gameEndTie = function () {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
+  $('#choose-opponent-modal').show()
   $('.modal-outcome').text('It was a tie!')
 }
 
 const onExitGame = function () {
   $('.play-again').hide()
   $('#new-game-nav').show()
+  $('#choose-opponent-nav').show()
   $('#currentPlayer').text($('.modal-outcome').text())
 }
 
@@ -177,6 +186,7 @@ module.exports = {
   onChangePassBtnClick,
   changePasswordSuccess,
   changePasswordFailure,
+  opponentSelected,
   newGameStart,
   gridSelection,
   spotOccupied,

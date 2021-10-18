@@ -17,4 +17,5 @@ $(() => {
   $('.box').on('mouseout', authEvents.offCellHover)
   $('#change-password-button').on('click', ui.onChangePassBtnClick)
   $('#change-password').on('submit', authEvents.onChangePassword)
+  $('.choose-opponent').on('click', authEvents.onOpponentSelect)
 })

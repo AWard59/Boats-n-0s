@@ -8,14 +8,17 @@ const getFormFields = require('../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 
-// hard code starting player token as X, as X always starts first
-// let playerToken = 'X'
+// game not in play whilst false
 let gameState = false
+// variable for user's selected opponent
+let opponent = 'dumbAI'
+// turncounter used to swap tokens when user playing vs human
+let turnCounter = 1
 
+// hard code starting player token as X, as X always starts first
 let token = 'X'
 let id = ''
 let gameId = ''
-let gameData
 
 // empty array to track tokens placed in each cell
 let gameCellTracker = ['', '', '', '', '', '', '', '', '']
@@ -31,6 +34,39 @@ const winVariations = [
   [0, 4, 8],
   [2, 4, 6]
 ]
+
+// each checkTwoInARow index is a combination of 2 spaces next to each other
+// we will use this later for AI to check if it can win or block a win
+const checkTwoInARow = [
+  [0, 1],
+  [1, 2],
+  [0, 2],
+  [3, 4],
+  [4, 5],
+  [3, 5],
+  [6, 7],
+  [7, 8],
+  [6, 8],
+  [0, 3],
+  [3, 6],
+  [0, 6],
+  [1, 4],
+  [4, 7],
+  [1, 7],
+  [2, 5],
+  [5, 8],
+  [2, 8],
+  [0, 4],
+  [4, 8],
+  [0, 8],
+  [2, 4],
+  [4, 6],
+  [2, 6]
+]
+
+// each index in this array is the 3rd space in the row of the checkTwoInARow array
+// again we will use this later for AI to check that the 3rd space is available before blocking or winning
+const thirdSpaceInTheRow = [2, 0, 1, 5, 3, 4, 8, 6, 7, 6, 0, 3, 7, 1, 4, 8, 2, 5, 8, 0, 4, 6, 2, 4]
 
 // prevent refresh on submit form, retrieve data from form fields, make request to the api with formfield data, then update ui depending on outcome
 const onSignUp = function (event) {
@@ -56,16 +92,6 @@ const onSignIn = function (event) {
     .catch(ui.signInFailure)
 }
 
-// make an API request to retrieve an object of all games played
-// set timeout because sometimes the GET request is returned before
-// the POST request of sign in, meaning no token and an error
-const getGamesHistory = function () {
-  gameData = setTimeout(() => {
-    api.getGames()
-      .then(ui.gameHistoryTracker)
-  }, 1200)
-}
-
 const onSignOut = function () {
   api.signOut()
     .then(ui.signOutSuccess)
@@ -83,11 +109,18 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordSuccess)
 }
 
+// opponent declared depending on user's button click choice
+const onOpponentSelect = function (event) {
+  opponent = event.target.id
+  ui.opponentSelected()
+}
+
 const onNewGame = function () {
   gameCellTracker = ['', '', '', '', '', '', '', '', '']
   api.newGame()
     .then(newGameData)
     .catch(ui.signOutFailure)
+  return token
 }
 
 // change game state to allow the game to be played
@@ -101,41 +134,53 @@ const newGameData = function (data) {
   return gameId
 }
 
-// retrieve the grid ID and the player token to store into a global variable
-// this information can then be retrieved for PATCH
-const onGridSelectionValues = function (eventId, currentToken) {
-  id = eventId
-  token = currentToken
-  return { id, token }
+// make an API request to retrieve an object of all games played
+// set timeout because sometimes the GET request is returned before
+// the POST request of sign in, meaning no token and an error
+const getGamesHistory = function () {
+  setTimeout(() => {
+    api.getGames()
+      .then(ui.gameHistoryTracker)
+  }, 1000)
 }
+
 // Check if the clicked grid section has already been occupied/played (data result can either be 'x', '0' or '' empty string. empty string is available to play)
 // If not occupied, apply the current token, x or 0, to the data to lock it
-// switch the token for the next player, X>0, or 0>X
 const onGridSelection = function (event) {
-  onGridSelectionValues(event.target.id, 'X')
   // gameState is default false, until we click New Game button for function onNewGame above
   // until the button is clicked, the grid has no functionality
   if (gameState) {
+    if (opponent === 'human') {
+      if (turnCounter % 2 === 0) {
+        token = '0'
+      } else {
+        token = 'X'
+      }
+    }
+    id = event.target.id
     // with event.target, get the id 0-8
     // with the id, compare it to the game tracking array with the same index
     // if empty, place token
     if (gameCellTracker[id] === '') {
-      gameCellTracker[id] = 'X'
-      ui.gridSelection('X')
-      // switch the tracked token for the next player
-      // if (token === 'X') {
-      //   playerToken = '0'
-      // } else {
-      //   playerToken = 'X'
-      // }
-      checkForWinner('X', id)
+      onGridSelectionValues(id, token)
+      gameCellTracker[id] = token
+      ui.gridSelection(token, id)
+      checkForWinner(token, id)
     } else {
       ui.spotOccupied()
     }
   } else {
     ui.gameNotInPlay()
   }
-  return ('X', id)
+  return (token, id)
+}
+
+// retrieve the grid ID and the player token to store into a global variable
+// this information can then be retrieved for PATCH
+const onGridSelectionValues = function (eventId, currentToken) {
+  id = eventId
+  const token = currentToken
+  return (id, token)
 }
 
 // loop through 8 iterations of 8 possible winning outcomes (index 0-7)
@@ -170,11 +215,16 @@ const checkForWinner = function (token, id) {
       break
     }
   }
-  console.log(token, id)
+  // PATCH the game object
   api.updateGame(token, id, false, gameId)
-  if (token === 'X') {
+  // if last played was X (human player) switch to 0
+  // otherwise switch to X
+  // find out which opponent plays next
+  if (opponent === 'human') {
+    turnCounter += 1
+  } else if (token === 'X') {
     token = '0'
-    dumbAI(token)
+    opponentChoice(token)
   } else {
     token = 'X'
   }
@@ -209,15 +259,32 @@ const offCellHover = function (event) {
   }
 }
 
+const opponentChoice = function (token) {
+  // check which opponent the user is playing against
+  // and run the AI function if necessary
+  if (opponent === 'dumbAI') {
+    dumbAI(token)
+  } else if (opponent === 'regularAI') {
+    regularAI(token)
+  }
+  return token
+}
+
+// Basic AI - looks for and selects a random available space
 const dumbAI = function (token) {
+  token = '0'
   const availableSpaces = []
+  // timeout, otherwise the request happens before the user's click is registered
   setTimeout(() => {
     if (gameState) {
       for (let i = 0; i < gameCellTracker.length; i++) {
+        // create an array of available game indexes
         if (gameCellTracker[i] === '') {
           availableSpaces.push(i)
         }
       }
+      // generate a random number between 0 and total available spaces
+      // place token in that cell
       const placeAIToken = Math.floor(Math.random() * availableSpaces.length)
       id = availableSpaces[placeAIToken]
       gameCellTracker[id] = token
@@ -229,11 +296,65 @@ const dumbAI = function (token) {
   }, 1500)
 }
 
+// regular difficulty AI
+// compared to dumbAI, regularAI actually checks if a win of either team can happen
+// then commits the win or block
+const regularAI = function (token) {
+  token = '0'
+  const availableSpaces = []
+  let winOrBlock = false
+  // setting a timeout so that the AI doesn't play immediately after user
+  // give a momentary break for a game flow
+  setTimeout(() => {
+    if (gameState) {
+      // check each variation of the array
+      // if both indexes contain '0' & the third space is empty
+      // set value of id to be retrieved later, and winorblock to true to create an IF true or false
+      checkTwoInARow.forEach((variation, index) => {
+        if (gameCellTracker[variation[0]] === '0' &&
+        gameCellTracker[variation[1]] === '0' &&
+        gameCellTracker[thirdSpaceInTheRow[index]] === '') {
+          id = thirdSpaceInTheRow[index]
+          winOrBlock = true
+          // if both indexes contain 'X' & the third space is empty
+          // set value of id to be retrieved later, and winorblock to true to create an IF true or false
+        } else if (gameCellTracker[variation[0]] === 'X' &&
+        gameCellTracker[variation[1]] === 'X' &&
+        gameCellTracker[thirdSpaceInTheRow[index]] === '') {
+          id = thirdSpaceInTheRow[index]
+          winOrBlock = true
+        }
+      })
+      // if winorblock is now true, retrieve the value of the id variable declared in the loop
+      // then update the cell index with current token '0'
+      if (winOrBlock) {
+        gameCellTracker[id] = token
+      } else {
+        // if no conditions are true, create an array of all available indexes
+        for (let i = 0; i < gameCellTracker.length; i++) {
+          if (gameCellTracker[i] === '') {
+            availableSpaces.push(i)
+          }
+        }
+        // generate a random number to place in one of the available indexes
+        const placeAIToken = Math.floor(Math.random() * availableSpaces.length)
+        id = availableSpaces[placeAIToken]
+        gameCellTracker[id] = token
+      }
+      ui.gridSelection(token, id)
+      onGridSelectionValues(id, token)
+      checkForWinner(token, id)
+      return (token, id)
+    }
+  }, 2000)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
   onChangePassword,
+  onOpponentSelect,
   onNewGame,
   onGridSelection,
   onPlayAgain,

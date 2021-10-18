@@ -28,10 +28,11 @@
             <div class="game-page" id="sign-out-failure"></div>
           </li>
           <li class="nav-item">
+            <button class="game-page btn-info shadow nav-button choose-opponent" id="choose-opponent-nav">Choose Opponent</button>
             <!-- create a 'new game' button on the nav bar -->
             <button class="game-page btn-primary shadow nav-button new-game" id="new-game-nav">New Game</button>
             <!-- create a 'change password' button on the nav bar -->
-            <button class="game-page btn-info shadow nav-button" id="change-password-button">Change Password</button>
+            <button class="game-page btn-warning shadow nav-button" id="change-password-button">Change Password</button>
             <!-- create a 'sign out' button on the nav bar -->
             <button class="game-page btn btn-danger shadow nav-button" id="sign-out">Sign Out</button>
           </li>
@@ -104,12 +105,12 @@
           </div>
         </div>
         <div id="new-game-button">
-          <button class="btn btn-primary new-game">New Game</button>
+          <button class="btn btn-primary new-game">Start Game</button>
         </div>
 
         <!-- play again modal -->
         <div class="modal play-again" tabindex="-1">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title modal-outcome"></h5>
@@ -119,12 +120,31 @@
                 <p>Play Again?</p>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-info shadow choose-opponent" id="choose-opponent-modal">Choose New Opponent</button>
                 <button type="button" class="btn btn-secondary modal-exit shadow" data-bs-dismiss="modal">No thanks</button>
                 <button type="button" class="btn btn-primary modal-play-again shadow">New Game</button>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Choose opponent modal -->
+        <div class="modal choose-opponent" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Choose Your Opponent</h5>
+              </div>
+              <div class="modal-body"></div>
+              <button type="button" class="btn btn-success" id="dumbAI">Easy Computer</button>
+              <br>
+              <button type="button" class="btn btn-warning" id="regularAI">Moderate Computer</button>
+              <br>
+              <button type="button" class="btn btn-info" id="human">Human</button>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <section id="change-password-page">
