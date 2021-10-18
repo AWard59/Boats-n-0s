@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Ash's Tic-Tac-Toe</title>
+      <title>Boats & 0's</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -15,7 +15,7 @@
       <!-- Import Nav Bar from bootstrap -->
       <nav class="navbar navbar-light shadow justify-content-end">
         <div class="title nav-item">
-          <h3>Tic-Tac-Toe</h3>
+          <h1>Boats & 0's</h1>
         </div>
         <ul class="nav">
           <li class="nav-item">
@@ -53,7 +53,7 @@
           <div class="mb-3">
             <input type="password" class="form-control shadow" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
           </div>
-          <button type="submit" class="btn btn-success shadow">Sign Up</button>
+          <button type="submit" class="btn btn-success shadow-lg">Sign Up</button>
           <div id="sign-up-success"></div>
           <div id="sign-up-failure"></div>
         </form>
@@ -70,7 +70,7 @@
           </div>
           <div class="mb-3">
           </div>
-          <button type="submit" class="btn btn-primary shadow">Sign In</button>
+          <button type="submit" class="btn btn-primary shadow-lg">Sign In</button>
           <div id="sign-in-success"></div>
           <div id="sign-in-failure"></div>
         </form>
@@ -83,10 +83,10 @@
             <div id="game-stats"></div>
           </div>
           <div class="col col-xs-4">
-            <span id="current-player">Current Player: X</span>
+            <span id="current-player">Current Player: Boats</span>
           </div>
           <div class="col col-xs-2">
-            <div id="opponent-display">12345r5667894567</div>
+            <div id="opponent-display"></div>
           </div>
           <div class="col col-xs-4">
             <div id="game-messages"></div>
@@ -108,7 +108,7 @@
           </div>
         </div>
         <div id="new-game-button">
-          <button class="btn btn-primary new-game">Start Game</button>
+          <button class="btn btn-primary new-game shadow-lg">Start Game</button>
         </div>
 
         <!-- play again modal -->
@@ -139,11 +139,11 @@
                 <h5 class="modal-title">Choose Your Opponent</h5>
               </div>
               <div class="modal-body"></div>
-              <button type="button" class="btn btn-success" id="dumbAI" data-opponent-display="Easy Computer">Easy Computer</button>
-              <br>
-              <button type="button" class="btn btn-warning" id="regularAI" data-opponent-display="Moderate Computer">Moderate Computer</button>
-              <br>
-              <button type="button" class="btn btn-info" id="human" data-opponent-display="Human">Human</button>
+              <button type="button" class="btn btn-success shadow" id="dumbAI" data-opponent-display="Easy Computer">Easy Computer</button>
+              <p class="button-break"></p>
+              <button type="button" class="btn btn-warning shadow" id="regularAI" data-opponent-display="Moderate Computer">Moderate Computer</button>
+              <p class="button-break"></p>
+              <button type="button" class="btn btn-info shadow" id="human" data-opponent-display="Human">Human</button>
             </div>
           </div>
         </div>

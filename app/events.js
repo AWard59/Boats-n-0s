@@ -89,7 +89,6 @@ const onSignIn = function (event) {
   api.signIn(formData)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
-  getGamesHistory()
 }
 
 const onSignOut = function () {
@@ -114,6 +113,7 @@ const onOpponentSelect = function (event) {
   opponent = event.target.id
   const opponentDisplay = event.target.getAttribute('data-opponent-display')
   ui.opponentSelected(opponentDisplay)
+  getGamesHistory()
 }
 
 const onNewGame = function () {
@@ -141,10 +141,8 @@ const newGameData = function (data) {
 // set timeout because sometimes the GET request is returned before
 // the POST request of sign in, meaning no token and an error
 const getGamesHistory = function () {
-  setTimeout(() => {
-    api.getGames()
-      .then(ui.gameHistoryTracker)
-  }, 3000)
+  api.getGames()
+    .then(ui.gameHistoryTracker)
 }
 
 // Check if the clicked grid section has already been occupied/played (data result can either be 'x', '0' or '' empty string. empty string is available to play)

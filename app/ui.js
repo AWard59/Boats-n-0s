@@ -118,7 +118,7 @@ const newGameStart = function () {
   $('#current-player').css('visibility', 'visible')
   $('#opponent-display').css('visibility', 'visible')
   gameMessagesRestore()
-  $('#game-messages').html('<h3>New Game Started!</h3>')
+  $('#game-messages').html("<h3>Go get you some boats & 0's!</h3>")
   $('#game-messages').addClass('text-success')
   $('#game-messages').fadeOut(5000)
 }
@@ -135,12 +135,12 @@ const gameHistoryTracker = function (gameData) {
 const gridSelection = function (token, id) {
   if (token === 'X') {
     $(event.target).addClass('bg-primary')
-    $(event.target).text('X')
-    $('#current-player').text('Current Player: 0')
+    $(event.target).html('<img src="boat.png" class="shadow-none">')
+    $('#current-player').text("Current Player: 0's")
   } else {
-    $(`#${id}`).addClass('bg-secondary')
-    $(`#${id}`).text('0')
-    $('#current-player').text('Current Player: X')
+    $(`#${id}`).css('background-color', '#Fcf3b5')
+    $(`#${id}`).html('<img src="0.png" class="shadow-none">')
+    $('#current-player').text('Current Player: Boats')
   }
 }
 
@@ -181,7 +181,8 @@ const onExitGame = function () {
 
 const resetGameBoard = function () {
   $('.box').text('')
-  $('.box').removeClass('bg-primary bg-secondary')
+  $('.box').css('background-color', '#ADE8F4')
+  $('.box').removeClass('bg-primary')
   $('#current-player').text('Current Player: X')
 }
 

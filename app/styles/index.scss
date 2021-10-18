@@ -6,13 +6,13 @@ body {
 
 nav {
   background-color: #ADE8F4;
-  height: 45px
+  height: 48px
 }
 
 .title {
 position: fixed;
 left: 20px;
-font-size: 20px;
+max-height: 80%
 }
 
 .border {
@@ -53,7 +53,7 @@ form {
 
 @media screen and (min-width: 2200px) {
   .nav-button{
-    font-size: 8px
+    font-size: 10px
   }
 }
 
@@ -109,6 +109,14 @@ form {
   }
 }
 
+.choose-opponent {
+  display: none;
+}
+
+.button-break {
+  margin: 3px;
+}
+
 .container-fluid {
   height: 88vh;
   width: 97vw;
@@ -150,11 +158,11 @@ form {
   box-shadow: 0px 0px 38px 5px #f70828;
 }
 
+img {
+  max-height: 80%;
+  max-width: 80%;
+}
 
 .play-again {
   display: none
-}
-
-.choose-opponent {
-  display: none;
 }
