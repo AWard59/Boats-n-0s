@@ -162,7 +162,11 @@ const gameOver = function (token) {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
   $('#choose-opponent-modal').show()
-  $('.modal-outcome').text(`${token} won the game!`)
+  if (token === 'X') {
+    $('.modal-outcome').text('Boats won the game!')
+  } else {
+    $('.modal-outcome').text(`${token}'s won the game!`)
+  }
 }
 
 const gameEndTie = function () {
