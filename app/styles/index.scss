@@ -1,12 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
 
 body {
   background-color: #CAF0F8;
+  font-family: Merienda One, $font-family-base
 }
 
 nav {
   background-color: #ADE8F4;
-  height: 48px
+  height: 48px;
+  margin-bottom: 10px;
 }
 
 .title {
@@ -83,20 +86,16 @@ form {
   #new-game-button > button {
     font-size: 4vw
   }
+
+.game-info {
+  text-align: center;
+  padding: 10px 0 0 0
+}
+
 }
 #current-player, #opponent-display {
   font-size: 32px;
   visibility: hidden
-}
-
-#current-player, #game-messages, #opponent-display {
-  padding: 10px 0 0 0;
-  text-align: center;
-}
-
-#game-stats {
-  padding: 10px 0 0 0;
-  text-align: left
 }
 
 @media screen and (max-width: 724px) {
