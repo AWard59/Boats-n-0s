@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Boats & 0's</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <!-- Import Nav Bar from bootstrap -->
+      <nav class="navbar navbar-light shadow justify-content-end">
+        <div class="title nav-item">
+          <h1>Boats & 0's</h1>
+        </div>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"></a>
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+            <div class="game-page" id="sign-out-message"></div>
+            <button class="game-page btn btn-info shadow nav-button choose-opponent choose-opponent-button" id="choose-opponent-nav">Choose Opponent</button>
+            <!-- create a 'new game' button on the nav bar -->
+            <button class="game-page btn btn-primary shadow nav-button new-game" id="new-game-nav">New Game</button>
+            <!-- create a 'change password' button on the nav bar -->
+            <button class="game-page btn btn-warning shadow nav-button" id="change-password-button">Change Password</button>
+            <!-- create a 'sign out' button on the nav bar -->
+            <button class="game-page btn btn-danger shadow nav-button" id="sign-out">Sign Out</button>
+          </li>
+          </ul>
+
+      </nav>
+
+      <!-- sign up/in page in a section container - can easily be hidden to show other pages -->
+      <section id="sign-in-page">
+        <form id="sign-up" class="border shadow">
+          <legend>Sign Up</legend>
+          <div class="mb-3">
+            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
+          </div>
+          <button type="submit" class="btn btn-success shadow-lg">Sign Up</button>
+          <div id="sign-up-success"></div>
+          <div id="sign-up-failure"></div>
+        </form>
+
+        <hr>
+
+        <form id="sign-in" class="border shadow">
+          <legend>Sign In</legend>
+          <div class="mb-3">
+            <input type="email" class="form-control shadow" name ="credentials[email]" placeholder="Email Address" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="credentials[password]" placeholder="Password" required>
+          </div>
+          <div class="mb-3">
+          </div>
+          <button type="submit" class="btn btn-primary shadow-lg">Sign In</button>
+          <div id="sign-in-success"></div>
+          <div id="sign-in-failure"></div>
+        </form>
+      </section>
+
+      <!-- game page sectioned - 3x3 grid created with bootstrap flexbox -->
+      <section class="game-page">
+        <div class="row">
+          <div class="col col-xs-2">
+            <div  class ="game-info" id="game-stats"></div>
+          </div>
+          <div class="col col-xs-4">
+            <span class ="game-info" id="current-player">Current Player: Boats</span>
+          </div>
+          <div class="col col-xs-2">
+            <div  class ="game-info" id="opponent-display"></div>
+          </div>
+          <div class="col col-xs-4">
+            <div  class ="game-info" id="game-messages"></div>
+          </div>
+        </div>
+        <div class="container-fluid border shadow">
+          <div class="row">
+              <div class="col col-xs-4 box game-grid" id="0"></div>
+              <div class="col col-xs-4 box game-grid" id="1"></div>
+              <div class="col col-xs-4 box game-grid" id="2"></div>
+            <div class="row"></div>
+              <div class="col col-xs-4 box game-grid" id="3"></div>
+              <div class="col col-xs-4 box game-grid" id="4"></div>
+              <div class="col col-xs-4 box game-grid" id="5"></div>
+            <div class="row"></div>
+              <div class="col col-xs-4 box game-grid" id="6"></div>
+              <div class="col col-xs-4 box game-grid" id="7"></div>
+              <div class="col col-xs-4 box game-grid" id="8"></div>
+          </div>
+        </div>
+        <div id="new-game-button">
+          <button class="btn btn-primary new-game shadow-lg">Start Game</button>
+        </div>
+
+        <!-- play again modal -->
+        <div class="modal play-again" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title modal-outcome"></h5>
+                <button type="button" class="btn-close modal-exit" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Play Again?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info shadow choose-opponent choose-opponent-button" id="choose-opponent-modal">Choose New Opponent</button>
+                <button type="button" class="btn btn-secondary modal-exit shadow" data-bs-dismiss="modal">No thanks</button>
+                <button type="button" class="btn btn-primary modal-play-again shadow">New Game</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Choose opponent modal -->
+        <div class="modal choose-opponent" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Choose Your Opponent</h5>
+              </div>
+              <div class="modal-body"></div>
+              <button type="button" class="btn btn-success shadow" id="dumbAI" data-opponent-display="Easy Computer">Easy Computer</button>
+              <p class="button-break"></p>
+              <button type="button" class="btn btn-warning shadow" id="regularAI" data-opponent-display="Moderate Computer">Moderate Computer</button>
+              <p class="button-break"></p>
+              <button type="button" class="btn btn-info shadow" id="human" data-opponent-display="Human">Human</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="change-password-page">
+        <form id="change-password" class="border shadow">
+          <legend>Change Password</legend>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="passwords[old]" placeholder="Old Password" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control shadow" name="passwords[new]" placeholder="New Password" required>
+          </div>
+          <button type="submit" class="btn btn-success shadow">Submit</button>
+          <div id="change-password-success"></div>
+          <div id="change-password-failure"></div>
+        </form>
+      </section>
+    </body>
+</html>
