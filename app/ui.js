@@ -61,17 +61,20 @@ const signInFailure = function () {
 
 // hide game-page and show sign-in-page
 const signOutSuccess = function () {
-  resetGameBoard()
   $('.game-page').hide()
   $('#change-password-page').hide()
   $('#sign-in-page').show()
+  $('#sign-out-message').show()
+  $('#sign-out-message').html('<p class=text-success>Signed Out Successfully</p>')
+  $('sign-out-message').fadeOut(5000)
+  resetGameBoard()
 }
 
 const signOutFailure = function () {
-  $('#sign-out-failure').text('Sign out failed')
-  $('#sign-out-failure').removeClass()
-  $('#sign-out-failure').addClass('text-danger')
-  $('#sign-out-failure').fadeOut(5000)
+  $('#sign-out-message').text('Sign out failed')
+  $('#sign-out-message').removeClass()
+  $('#sign-out-message').addClass('text-danger')
+  $('#sign-out-message').fadeOut(5000)
 }
 
 const onChangePassBtnClick = function () {
