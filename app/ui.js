@@ -2,14 +2,14 @@
 
 const store = require('./store')
 
+// Function to restore game messages section
 const gameMessagesRestore = function () {
   $('#game-messages').show()
   $('#game-messages').removeClass()
 }
 
-// Create a text response (in html) for successful outcome suggesting sign in to continue
-// add class of text success (green text) and have it fade away after 5 seconds
-// then reset all form data
+// Function to display a text response for successful sign up
+// with a suggestion to sign in and a success message
 const signUpSuccess = function () {
   $('#sign-up-success').html('<p>Signed up successfully!</p> <br> <p>Sign In to continue</p>')
   $('#sign-up-success').removeClass()
@@ -19,7 +19,7 @@ const signUpSuccess = function () {
   $('form').trigger('reset')
 }
 
-// text response stating failure, addclass text danger (red)
+// Function to display a text response for sign up failure
 const signUpFailure = function () {
   $('#sign-up-failure').text('Sign up failed')
   $('#sign-up-failure').removeClass()
@@ -27,8 +27,7 @@ const signUpFailure = function () {
   $('#sign-up-failure').fadeOut(5000)
 }
 
-// hide the sign-in-page section from user's view. show the game-page section
-// prevents a refresh of webpage
+// Function to handle successful sign in
 const signInSuccess = function (responseData) {
   store.user = responseData.user
 
@@ -52,6 +51,7 @@ const signInSuccess = function (responseData) {
   resetGameBoard()
 }
 
+// Function to handle sign in failure
 const signInFailure = function () {
   $('#sign-in-failure').text('Sign in failed')
   $('#sign-in-failure').removeClass()
@@ -59,7 +59,7 @@ const signInFailure = function () {
   $('#sign-in-failure').fadeOut(5000)
 }
 
-// hide game-page and show sign-in-page
+// Function to handle successful sign out
 const signOutSuccess = function () {
   $('.game-page').hide()
   $('#change-password-page').hide()
@@ -70,6 +70,7 @@ const signOutSuccess = function () {
   resetGameBoard()
 }
 
+// Function to handle sign out failure
 const signOutFailure = function () {
   $('#sign-out-message').text('Sign out failed')
   $('#sign-out-message').removeClass()
@@ -77,6 +78,7 @@ const signOutFailure = function () {
   $('#sign-out-message').fadeOut(5000)
 }
 
+// Function to handle change password button click
 const onChangePassBtnClick = function () {
   $('.game-page').hide()
   $('#change-password-page').show()
@@ -84,6 +86,7 @@ const onChangePassBtnClick = function () {
   $('#new-game-nav').show()
 }
 
+// Function to handle successful password change
 const changePasswordSuccess = function () {
   $('#change-password-success').text('Password Changed Successfully!')
   $('#change-password-success').removeClass()
@@ -93,6 +96,7 @@ const changePasswordSuccess = function () {
   $('form').trigger('reset')
 }
 
+// Function to handle password change failure
 const changePasswordFailure = function () {
   $('#change-password-failure').text('Password Change Failed')
   $('#change-password-failure').removeClass()
@@ -100,6 +104,7 @@ const changePasswordFailure = function () {
   $('#change-password-failure').fadeOut(5000)
 }
 
+// Function to handle opponent selection
 const opponentSelected = function (opponentDisplay) {
   $('.choose-opponent').hide()
   $('.play-again').hide()
@@ -108,11 +113,12 @@ const opponentSelected = function (opponentDisplay) {
   $('#opponent-display').text(`Opponent: ${opponentDisplay}`)
 }
 
+// Function to show opponent options
 const showOpponentOptions = function () {
   $('.choose-opponent').show()
 }
-// Hide the button covering the game board
-// change css value of box's opacity to 1 (was 0.3)
+
+// Function to start a new game
 const newGameStart = function () {
   resetGameBoard()
   $('.play-again').hide()
@@ -126,15 +132,13 @@ const newGameStart = function () {
   $('#game-messages').fadeOut(5000)
 }
 
-// length of games from the array gives a total of all games played
-// display the total on UI
+// Function to track game history and display total games played
 const gameHistoryTracker = function (gameData) {
   const gamesPlayed = gameData.games.length
   $('#game-stats').text('Total Games Played: ' + gamesPlayed)
 }
 
-// add bootstrap primary/secondary bg color, and X/0 text
-// also changing the player counter at the top, between X and 0 depending on which player's turn
+// Function to handle grid selection (placing X or 0)
 const gridSelection = function (token, id) {
   if (token === 'X') {
     $(event.target).addClass('bg-primary')
@@ -147,6 +151,7 @@ const gridSelection = function (token, id) {
   }
 }
 
+// Function to handle already occupied spot selection
 const spotOccupied = function () {
   gameMessagesRestore()
   $('#game-messages').html('<h3>That spot is already taken. Choose another.</h3>')
@@ -154,6 +159,7 @@ const spotOccupied = function () {
   $('#game-messages').fadeOut(2000)
 }
 
+// Function to handle game not in play scenario
 const gameNotInPlay = function () {
   gameMessagesRestore()
   $('#game-messages').html('<h3>The game is not in play. Start a new game first</h3>')
@@ -161,6 +167,7 @@ const gameNotInPlay = function () {
   $('#game-messages').fadeOut(2500)
 }
 
+// Function to handle game over scenario with a winner
 const gameOver = function (token) {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
@@ -172,6 +179,7 @@ const gameOver = function (token) {
   }
 }
 
+// Function to handle game end in a tie
 const gameEndTie = function () {
   $('.box').removeClass('box-hover')
   $('.play-again').show()
@@ -179,6 +187,7 @@ const gameEndTie = function () {
   $('.modal-outcome').text('It was a tie!')
 }
 
+// Function to handle exit game action
 const onExitGame = function () {
   $('.play-again').hide()
   $('#new-game-nav').show()
@@ -186,6 +195,7 @@ const onExitGame = function () {
   $('#currentPlayer').text($('.modal-outcome').text())
 }
 
+// Function to reset the game board
 const resetGameBoard = function () {
   $('.box').text('')
   $('.box').css('background-color', '#ADE8F4')
