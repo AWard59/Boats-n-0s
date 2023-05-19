@@ -1,46 +1,41 @@
 # Boats & 0's
 
-A variation of the classic 'Tic-Tac-Toe'. 
-The application requires a user to be signed up to be able to use it's features. Once signed up, it will be tracking the current and all previous games histories. 
-The game visually displays placed tokens. There is also a glow effect to make it even easier to see - blue for an empty space, red for occupied. 
-User will be alerted of any errors - during sign-in/sign-up/change password, or even during the game. 
-After game completion, it displays a result with the option to play again. The user can keep playing without requiring a single refresh or logging in again. 
-
-Go get you some boats and 0's!
+Boats & 0's is a variation of the classic 'Tic-Tac-Toe' game. The application requires users to sign up to access its features. Once signed up, users can play the game and track their current and previous game histories. The game visually displays placed tokens with a glow effect: blue for empty spaces and red for occupied spaces. The application also provides error alerts during sign-in, sign-up, change password, and gameplay. After completing a game, users can view the result and have the option to play again without the need for a refresh or re-login.
 
 ## Setup Steps
 
+Follow these steps to set up the project:
+
 1. Fork and clone this repository.
-2. Run `npm install` to install all dependencies
-3. Use `grunt serve` to spin up the server.
+2. Run `npm install` to install all dependencies.
+3. Use `grunt serve` to start the server.
 
 ## Important Links
 
 - [Deployed Client](https://award59.github.io/tic-tac-toe-client/)
 
-## Screenshot
+## Screenshots
 
 ![Sign In/Up Page](https://i.imgur.com/YVjXTyd.png)
 ![Choose Opponent](https://i.imgur.com/EGGrrov.png)
 ![Gameplay](https://i.imgur.com/BGAkIDa.png)
 ![Change Password Screen](https://i.imgur.com/ikNXOPc.png)
 
-
 ## Planning Story
 
-I began the planning of the project with some simple wireframes and user stories, after receiving the user spec for the application. You can see these below.
+The project planning started with wireframes and user stories based on the user specifications. These wireframes and user stories provided a clear direction for development.
 
-The next step was to make a base template, and begin working from there. I followed a fairly simple schedule, taking the project with a modular approach and working piece by piece. The general idea was to finish a feature, then commit and deploy the feature before working on the next feature. This was best practice to track which features where added, and at what point within the development. 
+The development process followed a modular approach, where each feature was implemented and deployed individually. This approach allowed for better tracking of added features and their respective development stages.
 
-The best approach to this application was to use a Single Page Application (SPA). The template is simple enough to do so, and it does create a better, faster experience for the user. To do this, I sectioned each page within a `section`, with an ID or class of the page reference. Then I only have to show/hide content based on successes. 
+The application was designed as a Single Page Application (SPA) to provide a seamless and faster user experience. Each page was sectioned within a `section` element with a unique ID or class for easy content visibility control based on user actions.
 
-I chose to import Bootstrap for most of the physical objects. The bootstrap design is consistent with my wireframe design, and is much easier to control responsive objects for different sized screens. Bootstrap flexbox was how I'd always planned to create the game grid too, again with it's ease to control responsiveness, it creates the same experience for all users.
+Bootstrap was chosen to handle most of the design elements as it aligned with the wireframe design and provided responsive object control for different screen sizes. Bootstrap's flexbox was used to create the game grid, ensuring a consistent experience across devices.
 
-### Wireframe
+### Wireframes
 
-![wireframe - Sign Up/In](https://i.imgur.com/F4xqyGu.png)
-![wireframe - Game Page](https://i.imgur.com/uILBVsI.png)
-![wireframe - Game End Message](https://i.imgur.com/tRu4rep.png)
+![Wireframe - Sign Up/In](https://i.imgur.com/F4xqyGu.png)
+![Wireframe - Game Page](https://i.imgur.com/uILBVsI.png)
+![Wireframe - Game End Message](https://i.imgur.com/tRu4rep.png)
 
 ### User Stories
 
@@ -48,26 +43,26 @@ I chose to import Bootstrap for most of the physical objects. The bootstrap desi
 
 ### Technologies Used
 
+The following technologies were used in the project:
+
 - jQuery
 - HTML/CSS
 - Bootstrap
-- Javascript
+- JavaScript
 
 ### Unsolved Problems & Future Features
 
-No currently known issues as of this commit.
+As of the latest commit, there are no known issues with the application.
 
-#### Features I want to implement:-
+#### Features to be Implemented
 
-- Display number of games won
-- Restore previous game state
-- More styling 
-- - Further simplify sign in/up page
-- Automatic Sign in after sign up
-- Stay signed in on refresh
+- Display the number of games won
+- Restore the previous game state
+- Enhance styling
+  - Further simplify the sign-in/up page
+- Automatic sign-in after sign-up
+- Stay signed in on page refresh
 
-### Useful resources
+### Useful Resources
 
-- [Box Shadow Glow Generator](https://www.cssmatic.com/box-shadow)
-- - This was used to create the glow effect of cells
-- - There is also a rounded edge feature which I used
+- [Box Shadow Glow Generator](https://www.cssmatic.com/box-shadow) - This resource was used to create the glow effect of cells and implement rounded edges.
